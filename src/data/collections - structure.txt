@@ -1,0 +1,146 @@
+const collectios = [
+  {
+    id: 1,
+    title: "New Collections",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Zoulo le createur",
+    cover: require("../../assets/model/a.jpg"),
+    image: [
+      {
+        id: 1,
+        content: [
+          require("../../assets/collections/a1.jpg"),
+          require("../../assets/collections/a2.jpg"),
+          require("../../assets/model/b1.jpg"),
+          require("../../assets/collections/a1.jpg"),
+        ],
+      },
+      {
+        id: 2,
+        content: [
+          require("../../assets/collections/b1.jpg"),
+          require("../../assets/collections/b3.jpg"),
+          require("../../assets/collections/b3.jpg"),
+          require("../../assets/collections/b2.jpg"),
+        ],
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "Toufache",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Toufa fashions",
+    cover: require("../../assets/model/b1.jpg"),
+    image: [
+      {
+        id: 1,
+        content: [
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+        ],
+      },
+      {
+        id: 2,
+        content: [
+          require("../../assets/collections/d1.jpg"),
+          require("../../assets/collections/d2.jpg"),
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    title: "Soyata",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Soya",
+    cover: require("../../assets/model/d1.jpg"),
+    image: [
+      {
+        id: 1,
+        content: [
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e1.jpg"),
+        ],
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "New Collections",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Zoulo le createur",
+    cover: require("../../assets/model/a.jpg"),
+    image: [
+      {
+        id: 1,
+        content: [
+          require("../../assets/collections/a1.jpg"),
+          require("../../assets/collections/a2.jpg"),
+          require("../../assets/model/b1.jpg"),
+          require("../../assets/collections/a1.jpg"),
+        ],
+      },
+      {
+        id: 2,
+        content: [
+          require("../../assets/collections/b1.jpg"),
+          require("../../assets/collections/b3.jpg"),
+          require("../../assets/collections/b3.jpg"),
+          require("../../assets/collections/b2.jpg"),
+        ],
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "Toufache",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Toufa fashions",
+    cover: require("../../assets/model/b1.jpg"),
+    image: [
+      {
+        id: 4,
+        content: [
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+          require("../../assets/collections/e2.jpg"),
+        ],
+      },
+      {
+        id: 5,
+        content: [
+          require("../../assets/collections/d1.jpg"),
+          require("../../assets/collections/d2.jpg"),
+        ],
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    title: "Soyata",
+    avatar: require("../../assets/profil.jpg"),
+    name: "Soya",
+    cover: require("../../assets/model/d1.jpg"),
+    image: [
+      {
+        id: 1,
+        content: [
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e1.jpg"),
+          require("../../assets/collections/e1.jpg"),
+        ],
+      },
+    ],
+  },
+];
+
+export { collectios };
