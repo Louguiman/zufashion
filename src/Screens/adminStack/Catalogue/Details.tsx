@@ -48,7 +48,7 @@ const Details = ({ route }: any) => {
           borderBottomRightRadius: 30,
         }}
       >
-        <View style={{ position: "absolute", top: 0 }}>
+        <View style={{ position: "absolute", top: 20 }}>
           <TouchableOpacity
             style={{ zIndex: 1 }}
             onPress={() => navigation.goBack()}
@@ -57,7 +57,7 @@ const Details = ({ route }: any) => {
               type={Icons.Ionicons}
               name="chevron-back"
               size={40}
-              color={Colors.white}
+              color={Colors.black}
               style={{ margin: 5 }}
             />
           </TouchableOpacity>
@@ -65,7 +65,7 @@ const Details = ({ route }: any) => {
             style={{
               fontSize: 18,
               fontWeight: "800",
-              color: Colors.white,
+              color: Colors.black,
               marginLeft: 15,
             }}
           >
@@ -84,7 +84,7 @@ const Details = ({ route }: any) => {
           style={styles.blurView}
           resizeMode="cover"
         >
-          <View style={styles.header}>''
+          <View style={styles.header}>
             <Text style={styles.headerTxt}>Collection</Text>
             <View
               style={{
@@ -99,7 +99,7 @@ const Details = ({ route }: any) => {
                 color={Colors.black}
                 iconSize={24}
                 iconeName="pluscircle"
-                onPress={() => {}}
+                onPress={() => navigation.navigate('AdminStack',{screen:'Creation'})}
                 type={Icons.AntDesign}
                 style={{
                   height: 35,
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   banner: {
-    height: 385,
+    height: 415,
     width: "100%",
     position: "relative",
     bottom: -20,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     color: Colors.white,
   },
   blurView: {
-    height: 385,
+    height: 415,
     width: "98.5%",
     // marginTop:10
     zIndex: 100,

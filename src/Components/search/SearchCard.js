@@ -5,12 +5,14 @@ import {
   ImageBackground,
   Dimensions,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import React from "react";
 import LateralBar from "./lateralBar";
 import Colors from "../../Utils/Colors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import ImageView from "react-native-image-viewing";
+import Icon, { Icons } from "../../Utils/Icons";
 
 const { width, height } = Dimensions.get("screen");
 const SearchCard = ({ item }) => {
@@ -34,8 +36,16 @@ const SearchCard = ({ item }) => {
             flexDirection: "row",
           }}
         >
-          <Text style={{ fontSize: 15, fontWeight: "600" }}>SUIVRE</Text>
-          <Entypo name="plus" size={24} color="black" />
+          <Text
+            style={{
+              fontSize: Platform.OS === "android" ? 15 : 12,
+              fontWeight: Platform.OS === "android" ? "600" : "400",
+            }}
+          >
+            SUIVRE
+          </Text>
+
+          <Icon type={Icons.Entypo} name="plus" size={24} color="black" />
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -52,8 +62,8 @@ const styles = StyleSheet.create({
 
   container: {
     backgroundColor: Colors.lightOverlayColor,
-    height: 130,
-    width: 280,
+    height: 165,
+    width: 290,
     position: "absolute",
     bottom: 50,
     right: 45,
@@ -62,7 +72,7 @@ const styles = StyleSheet.create({
   },
   fullname: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: Platform.OS === "android" ? "bold" : "500",
     letterSpacing: 0.5,
     color: Colors.dark,
     marginLeft: 20,
@@ -72,5 +82,7 @@ const styles = StyleSheet.create({
     margin: 10,
     minWidth: 270,
     maxWidth: 550,
+    fontWeight: Platform.OS === "android" ? "bold" : "400",
+    fontSize: Platform.OS === "android" ? 15 : 12,
   },
 });

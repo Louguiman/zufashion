@@ -6,10 +6,11 @@ import {
   View,
   Animated,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 
 import React, { useRef, useState } from "react";
-import { CardPoste,  Header, PosteHeader } from "../../Components";
+import { CardPoste, Header, PosteHeader } from "../../Components";
 import { Poste } from "../../data/poste";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -66,7 +67,7 @@ const Accueil = ({ navigation }: any) => {
         )}
         keyExtractor={(item): any => item.id}
         // style=
-        contentContainerStyle={{ paddingBottom: 120, marginTop: 55 }}
+        contentContainerStyle={{ paddingBottom: 120, marginTop:60 }}
       />
     </SafeAreaView>
   );

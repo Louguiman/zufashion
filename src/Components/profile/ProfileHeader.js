@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
   name: {
     position: "absolute",
-    top: Platform.OS === "ios" ? -10 : -10,
+    top: -15,
     right: 50,
     fontSize: 35,
     width: Platform.OS === "ios" ? 180 : 150,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
   },
   prenom: {
     position: "absolute",
-    top: Platform.OS === "ios" ? 30 : 20,
+    top: 20,
     right: 50,
     fontSize: 35,
     width: Platform.OS === "ios" ? 180 : 150,

@@ -35,7 +35,7 @@ const Welcome = ({ navigation }: any) => {
           height: Platform.OS === "ios" ? 400 : 380,
           width: 250,
           position: "absolute",
-          bottom: Platform.OS === "ios" ? -70 : 0,
+          bottom: Platform.OS === "ios" ? -70 : -15,
           right: 0,
           padding: 10,
           marginBottom: 60,

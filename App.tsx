@@ -18,7 +18,7 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }} edges={['right', 'bottom', 'left']}>
       {/* <Provider store={store}> */}
         <NavigationContainer>
           <GestureHandlerRootView style={{ flex: 1 }}>

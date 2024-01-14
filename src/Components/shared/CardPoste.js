@@ -92,91 +92,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
   switch (type) {
     case "main":
       return (
-        <SafeAreaView style={{ flex: 1 }}>
-          {visible && (
-            <BlurView tint="dark" intensity={150} style={styles.blurView}>
-              <View style={styles.modalHeaderFavoris}>
-                <Image
-                  source={item.avatar}
-                  style={styles.avatar}
-                  resizeMode="cover"
-                />
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      fontWeight: "800",
-                      letterSpacing: 0.5,
-                      marginBottom: 1,
-                      color: Colors.white,
-                    }}
-                  >
-                    {item.nom}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontSize: 8,
-                      letterSpacing: 0.5,
-                      color: Colors.darkGray,
-                    }}
-                  >
-                    {item.createAt}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => setVisible(!visible)}
-                  style={{
-                    position: "absolute",
-                    right: Platform.OS === "ios" ? -185 : -160,
-                    top: 5,
-                    height: 25,
-                    width: 25,
-                    backgroundColor: Colors.white,
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon
-                    type={Icons.AntDesign}
-                    color={Colors.red}
-                    name="closecircle"
-                    size={20}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <InputModal
-                iconName={"account"}
-                onChange={setFullName}
-                placeholder={"Notre nom Complete"}
-                value={fullName}
-              />
-              <InputModal
-                iconName={"phone"}
-                onChange={setTel}
-                placeholder={"Numero Telephone"}
-                value={tel}
-                style={{ marginTop: -10 }}
-              />
-              {fullName && (
-                <Buttom
-                  onPress={() => {}}
-                  placeholder="Envoyer"
-                  type="btnModal"
-                  style={{
-                    position: "absolute",
-                    bottom: 20,
-                    height: 50,
-                    width: 90,
-                    backgroundColor: Colors.primary,
-                  }}
-                />
-              )}
-            </BlurView>
-          )}
-
+        <View style={{ flex: 1 }}>
           <AnimatedTouch
             // animation="fadeInUp"
             // delay={index * 100}
@@ -244,11 +160,15 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                     style={styles.avatar}
                     resizeMode="cover"
                   />
-                  <View>
+                  <View
+                    style={{
+                      marginLeft: Platform.OS === "ios" ? -20 : 0,
+                    }}
+                  >
                     <Text
                       style={{
-                        fontSize: Platform.OS === "ios" ? 14.5 : 15,
-                        fontWeight: Platform.OS === "ios" ? "500" : "800",
+                        fontSize: Platform.OS === "ios" ? 12 : 15,
+                        fontWeight: Platform.OS === "ios" ? "400" : "800",
                         letterSpacing: 0.5,
                         marginBottom: 1.5,
                       }}
@@ -256,60 +176,68 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                       {item.nom}
                     </Text>
 
-                    <Text style={{ fontSize: 13, letterSpacing: 0.5 }}>
+                    <Text
+                      style={{
+                        fontSize: 13,
+                        fontWeight: Platform.OS === "ios" ? "400" : "600",
+                        letterSpacing: 0.5,
+                      }}
+                    >
                       {item.createAt}
                     </Text>
                   </View>
                 </View>
                 <View style={styles.right}>
-                  {/* <TouchableOpacity
-                  onPress={() => {}}
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ fontSize: 15 }}>{item.likeCount}</Text>
-                  <Ionicons name="heart-outline" size={20} color="black" />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  onPress={() => {}}
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ fontSize: 15 }}>{item.shareCount}</Text>
-  
-                  <EvilIcons name="share-apple" size={24} color="black" />
-                </TouchableOpacity> */}
+                  <TouchableOpacity
+                    onPress={() => {}}
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Icon
+                      type={Icons.Ionicons}
+                      name="heart-outline"
+                      size={24}
+                      color={Colors.primary}
+                    />
+                    <Text style={styles.rightText}>{item.likeCount}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {}}
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Icon
+                      type={Icons.Feather}
+                      name="share"
+                      size={24}
+                      color={Colors.primary}
+                    />
+                    <Text style={styles.rightText}>{item.shareCount}</Text>
+                  </TouchableOpacity>
 
-                  <Buttom
-                    onPress={() => setVisible(!visible)}
-                    type="btnRdvIcon"
-                    style={{ height: 40, width: 70, borderRadius: 20 }}
-                  />
+                  <TouchableOpacity
+                    onPress={() => setShowComment(!showComment)}
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Icon
+                      type={Icons.Ionicons}
+                      name="chatbubble-outline"
+                      size={24}
+                      color={Colors.primary}
+                    />
 
-                  {/* <TouchableOpacity
-                  onPress={handlePresentModal}
-                  style={styles.Btnrdv}
-                >
-        
-                  <Text style={styles.BtnTxt}>Prendre Rendez-Vous</Text>
-                </TouchableOpacity> */}
-                  {/* <TouchableOpacity
-                  onPress={() => setShowComment(!showComment)}
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={{ fontSize: 15 }}>{item.shareCount}</Text>
-                  <Ionicons name="chatbubble-outline" size={20} color="black" />
-                </TouchableOpacity> */}
+                    <Text style={styles.rightText}>{item.shareCount}</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
               {showComment ? (
@@ -317,224 +245,127 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                   style={{
                     flexDirection: "row",
                     justifyContent: "space-evenly",
-                    marginTop: 10,
+                    // marginTop: 10,
                     alignItems: "center",
+                    margin: 10,
                   }}
                 >
                   <TextInput style={styles.input} />
                   <TouchableOpacity style={styles.button}>
-                    <MaterialCommunityIcons
+                    <Icon
+                      type={Icons.MaterialCommunityIcons}
                       name="send-circle-outline"
                       size={24}
-                      color="white"
+                      color={Colors.primary}
                     />
                   </TouchableOpacity>
                 </View>
               ) : null}
             </Animated.View>
           </AnimatedTouch>
-        </SafeAreaView>
+        </View>
       );
       break;
 
     case "favoris":
       return (
-        <SafeAreaView style={{}}>
-          {visible && (
-            <BlurView
-              tint="dark"
-              intensity={150}
-              style={styles.blurViewFavoris}
-            >
-              <View style={styles.modalHeaderFavoris}>
-                <Image
-                  source={item.avatar}
-                  style={styles.avatar}
-                  resizeMode="cover"
-                />
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      fontWeight: "800",
-                      letterSpacing: 0.5,
-                      marginBottom: 1,
-                      color: Colors.white,
-                    }}
-                  >
-                    {item.nom}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontSize: 8,
-                      letterSpacing: 0.5,
-                      color: Colors.darkGray,
-                    }}
-                  >
-                    {item.createAt}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => setVisible(!visible)}
-                  style={{
-                    position: "absolute",
-                    right: 10,
-                    top: 5,
-                    height: 25,
-                    width: 25,
-                    backgroundColor: Colors.white,
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon
-                    type={Icons.AntDesign}
-                    color={Colors.red}
-                    name="closecircle"
-                    size={20}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <InputModal
-                iconName={"account"}
-                onChange={setFullName}
-                placeholder={"Notre nom Complete"}
-                value={fullName}
-              />
-              <InputModal
-                iconName={"phone"}
-                onChange={setTel}
-                placeholder={"Numero Telephone"}
-                value={tel}
-                style={{ marginTop: -10 }}
+        <AnimatedTouch
+          // animation="fadeInUp"
+          // delay={index * 100}
+          // duration={300}
+          // useNativeDriver
+          activeOpacity={0.8}
+          style={styles.contain}
+          onPress={() =>
+            navigation.navigate("AppStack", {
+              screen: "Publication",
+              params: { item },
+            })
+          }
+        >
+          <Animated.View style={styles.containerFavoris} key={item.id}>
+            <View style={styles.headerFavoris}>
+              <Swiper
+                height={150}
+                width={Platform.OS === "ios" ? "100%" : "100%"}
+                image={item.img}
+                // borderRadius={150}
+                type="main"
               />
 
-              <Buttom
-                onPress={() => {}}
-                placeholder="Envoyer"
-                type="btnModal"
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  height: 30,
-                  width: 75,
+              <AnimatedTouch
+                animation="pulse"
+                easing="ease-out"
+                iterationCount="infinite"
+                onPress={() => {
+                  handleClick();
                 }}
-              />
-            </BlurView>
-          )}
-          <AnimatedTouch
-            // animation="fadeInUp"
-            // delay={index * 100}
-            // duration={300}
-            // useNativeDriver
-            activeOpacity={0.8}
-            style={styles.contain}
-            onPress={() =>
-              navigation.navigate("AppStack", {
-                screen: "Publication",
-                params: { item },
-              })
-            }
-          >
-            <Animated.View style={styles.containerFavoris} key={item.id}>
-              <View style={styles.headerFavoris}>
-                <Swiper
-                  height={150}
-                  width={Platform.OS === "ios" ? "100%" : "100%"}
-                  image={item.img}
-                  // borderRadius={150}
-                  type="main"
-                />
+                style={{
+                  height: 35,
+                  width: 35,
+                  borderRadius: 30,
+                  backgroundColor: "white",
+                  elevation: 5,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  position: "absolute",
+                  bottom: 15,
+                  right: 10,
+                }}
+              >
+                {isFavoris ? (
+                  <MaterialCommunityIcons
+                    name="bookmark"
+                    size={24}
+                    color={Colors.primary}
+                  />
+                ) : (
+                  <Feather name="bookmark" size={24} color="black" />
+                )}
+              </AnimatedTouch>
+            </View>
+            <View style={styles.descFavoris}>
+              <Text style={styles.descTxtFavoris} multiline>
+                {item.desc.substring(0, 90).padEnd(96, "...")}
+              </Text>
+            </View>
 
-                <AnimatedTouch
-                  animation="pulse"
-                  easing="ease-out"
-                  iterationCount="infinite"
-                  onPress={() => {
-                    handleClick();
-                  }}
+            <View style={styles.leftFavoris}>
+              <Image
+                source={item.avatar}
+                style={styles.avatarFavoris}
+                resizeMode="cover"
+              />
+              <View>
+                <Text
                   style={{
-                    height: 35,
-                    width: 35,
-                    borderRadius: 30,
-                    backgroundColor: "white",
-                    elevation: 5,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    position: "absolute",
-                    bottom: 15,
-                    right: 10,
+                    fontSize: Platform.OS === "ios" ? 11 : 12,
+                    fontWeight: Platform.OS === "ios" ? "300" : "800",
+                    letterSpacing: 0.5,
+                    marginBottom: 1.5,
+                    marginLeft: 5,
+                    minWidth: 75,
+                    maxWidth: 100,
                   }}
                 >
-                  {isFavoris ? (
-                    <MaterialCommunityIcons
-                      name="bookmark"
-                      size={24}
-                      color={Colors.primary}
-                    />
-                  ) : (
-                    <Feather name="bookmark" size={24} color="black" />
-                  )}
-                </AnimatedTouch>
-              </View>
-              <View style={styles.descFavoris}>
-                <Text style={styles.descTxtFavoris} multiline>
-                  {item.desc.substring(0, 90).padEnd(96, "...")}
+                  {item.nom}
+                </Text>
+
+                <Text
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: 0.5,
+                    marginLeft: 1,
+                    fontWeight: Platform.OS == "ios" ? "200" : "500",
+                    color: Colors.darkGray,
+                  }}
+                >
+                  {item.createAt}
                 </Text>
               </View>
-
-              <View style={styles.leftFavoris}>
-                <Image
-                  source={item.avatar}
-                  style={styles.avatarFavoris}
-                  resizeMode="cover"
-                />
-                <View>
-                  <Text
-                    style={{
-                      fontSize: Platform.OS === "ios" ? 11 : 12,
-                      fontWeight: Platform.OS === "ios" ? "300" : "800",
-                      letterSpacing: 0.5,
-                      marginBottom: 1.5,
-                      marginLeft: 5,
-                      minWidth: 75,
-                      maxWidth: 100,
-                    }}
-                  >
-                    {item.nom}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: 0.5,
-                      marginLeft: 1,
-                      fontWeight: Platform.OS == "ios" ? "200" : "500",
-                      color: Colors.darkGray,
-                    }}
-                  >
-                    {item.createAt}
-                  </Text>
-                </View>
-                <Buttom
-                  type="btnRdvIcon"
-                  onPress={() => setVisible(!visible)}
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRaduis: 15,
-                    position: "absolute",
-                    right: -45,
-                    elevation: 5,
-                  }}
-                />
-              </View>
-            </Animated.View>
-          </AnimatedTouch>
-        </SafeAreaView>
+            </View>
+          </Animated.View>
+        </AnimatedTouch>
       );
       break;
     case "profil":
@@ -744,6 +575,14 @@ export default CardPoste;
 const styles = StyleSheet.create({
   contain: {
     flex: 1,
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+
+    elevation: 5,
   },
   blurView: {
     backgroundColor: Colors.background,
@@ -758,18 +597,18 @@ const styles = StyleSheet.create({
   },
   container: {
     // padding: 8,
-    marginVertical: Platform.OS === "ios" ? -30 : 8,
+    marginVertical: Platform.OS === "ios" ? 8 : 8,
     borderRadius: 15,
     shadowColor: Colors.black,
     shadowOffset: {
       width: 2,
       height: 2,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowOpacity: 0.6,
+
     elevation: 5,
     minHeight: Platform.OS == "ios" ? 0 : 420,
-    maxHeight: Platform.OS == "ios" ? 450 : 440,
+    maxHeight: Platform.OS == "ios" ? 450 : 490,
 
     backgroundColor: "#f8f9fa",
     borderColor: "gray",
@@ -782,7 +621,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     // flex: 2,
-    padding: 10,
+    padding: 5,
     height: Platform.OS === "ios" ? 90 : 75,
   },
   footer: {
@@ -790,7 +629,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     // flex: 3,
-    alignSelf: "center",
+    // alignSelf: "center",
+    paddingHorizontal: 10,
   },
   header: {
     alignSelf: "center",
@@ -799,27 +639,32 @@ const styles = StyleSheet.create({
   },
   right: {
     flexDirection: "row",
-    // justifyContent: "space-evenly",
+    justifyContent: "space-around",
     alignItems: "center",
     height: 50,
-    width: Platform.OS === "ios" ? 135 : 150,
-    marginLeft: Platform.OS === "ios" ? 0 : 20,
+    width: 145,
+    marginLeft: Platform.OS === "ios" ? 0 : 10,
     position: "relative",
-    right: -60,
+    right: -10,
+  },
+  rightText: {
+    fontSize: Platform.OS === "ios" ? 10.5 : 13,
+    fontWeight: "400",
+    marginLeft: 1.5,
   },
   avatar: {
-    height: 40,
-    width: 40,
+    height: 35,
+    width: 35,
     borderRadius: 30,
     margin: 5,
   },
   left: {
     flexDirection: "row",
     justifyContent: "space-around",
-    width: Platform.OS === "ios" ? 220 : 180,
+    width: Platform.OS === "ios" ? 210 : 180,
     alignItems: "center",
     height: 50,
-    marginLeft: Platform.OS === "ios" ? -15 : -10,
+    marginLeft: Platform.OS === "ios" ? -10 : -10,
   },
   descTxt: {
     fontSize: 15,
@@ -847,44 +692,6 @@ const styles = StyleSheet.create({
 
     padding: 5,
   },
-  modalView: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    padding: 5,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-
-    width: "80%",
-    minHeight: 250,
-    position: "absolute",
-    alignSelf: "center",
-    top: 180,
-  },
-  modalHeader: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: 180,
-    alignItems: "center",
-    height: 50,
-  },
-  buttonClose: {
-    position: "absolute",
-    right: 5,
-    height: 30,
-    width: 30,
-    borderRadius: 10,
-    backgroundColor: "red",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 5,
-  },
   //CardPoste Favoris
   containerFavoris: {
     // padding: 2,
@@ -909,17 +716,6 @@ const styles = StyleSheet.create({
     // maxWidth: "98%",
     overflow: "hidden",
   },
-  blurViewFavoris: {
-    backgroundColor: Colors.background,
-    height: Platform.OS == "ios" ? 290 : 255,
-    width: Platform.OS == "ios" ? 185 : 174,
-    position: "absolute",
-    alignSelf: "center",
-    right: Platform.OS == "ios" ? 1.5 : 3,
-    top: Platform.OS == "ios" ? 46 : 5,
-    borderRadius: Platform.OS == "ios" ? 50 : 10,
-    zIndex: 1,
-  },
 
   headerFavoris: {
     alignSelf: "center",
@@ -928,8 +724,8 @@ const styles = StyleSheet.create({
   },
 
   avatarFavoris: {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     borderRadius: 15,
     // margin: 5,
   },
@@ -945,20 +741,14 @@ const styles = StyleSheet.create({
   leftFavoris: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    // justifyContent: "space-evenly",
     // height: 50,
-    marginLeft: Platform.OS === "ios" ? 0 : 0,
     paddingVertical: 2,
     position: "absolute",
     bottom: 3,
+    paddingHorizontal: 10,
   },
-  modalHeaderFavoris: {
-    flexDirection: "row",
-    // justifyContent: "space-around",
-    width: 180,
-    alignItems: "center",
-    height: 50,
-  },
+
   //CardPoste Profil
   containerProfil: {
     // padding: 2,
@@ -982,17 +772,6 @@ const styles = StyleSheet.create({
 
     // maxWidth: "98%",
     overflow: "hidden",
-  },
-  blurViewProfil: {
-    backgroundColor: Colors.background,
-    height: Platform.OS == "ios" ? 290 : 255,
-    width: Platform.OS == "ios" ? 185 : 174,
-    position: "absolute",
-    alignSelf: "center",
-    right: Platform.OS == "ios" ? 1.5 : 3,
-    top: Platform.OS == "ios" ? 46 : 5,
-    borderRadius: Platform.OS == "ios" ? 50 : 10,
-    zIndex: 1,
   },
 
   headerProfil: {

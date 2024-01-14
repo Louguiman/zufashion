@@ -42,7 +42,7 @@ const Catalogue = () => {
           />
           <View style={{ position: "absolute" }}>
             <TouchableOpacity
-              style={{ zIndex: 1 }}
+              style={{ zIndex: 1,marginTop:15 }}
               onPress={() => navigation.goBack()}
             >
               <Icon
@@ -143,15 +143,16 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
   },
   bannere: {
-    height: 325,
+    height: 360,
     width: "100%",
     position: "absolute",
     bottom: 0,
   },
   blur: {
-    height: 325,
+    height: 355,
     width: "97%",
-    // marginTop:10
+  position:"absolute",
+  bottom:0
   },
   header: {
     height: 50,

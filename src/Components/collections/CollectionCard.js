@@ -336,6 +336,13 @@ export default CollectionCard;
 const styles = StyleSheet.create({
   contain: {
     flex: 1,
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      height: 2,
+      width: 2,
+    },
+    shadowOpacity: 0.3,
   },
   card: {
     height: 370,

@@ -11,7 +11,7 @@ function RootStack() {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="AuthStack"
+      initialRouteName="AppBottom"
     >
       <Stack.Screen name="AuthStack" component={AuthStack} />
       <Stack.Screen name="AppBottom" component={AppBottom} />

@@ -11,6 +11,7 @@ function AdminStack() {
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Atelier" component={Atelier} />
       <Stack.Screen name="Catalogue" component={Catalogue} />
+      <Stack.Screen name="Creation" component={Creation} />
       <Stack.Screen
         name="Details"
         component={Details}

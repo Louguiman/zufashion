@@ -73,7 +73,7 @@ const Creation = ({ setCurrentLoader }: any) => {
       >
         <View style={{ position: "absolute" }}>
           <TouchableOpacity
-            style={{ zIndex: 1 }}
+            style={{ zIndex: 1,marginTop:15 }}
             onPress={() => setCurrentLoader(null)}
           >
             <Icon
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bannere: {
-    height: 285,
+    height: 310,
     width: "100%",
   },
   blur: {

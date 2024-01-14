@@ -7,13 +7,13 @@ const Stack = createNativeStackNavigator();
 import { Welcome, Auth, MPO, UpdateUser, Onboarding } from "../Screens";
 
 function AuthStack() {
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(null);
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = useState(false);
 
   useEffect(() => {
     async function loadState() {
       const appData = await AsyncStorage.getItem("isAppFirstLaunched");
       if (appData == null) {
-        setIsAppFirstLaunched(true);
+        setIsAppFirstLaunched(false);
         AsyncStorage.setItem("isAppFirstLaunched", "false");
       } else {
         setIsAppFirstLaunched(true);

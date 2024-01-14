@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Badge } from "react-native-paper";
@@ -20,7 +27,7 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
                 style={styles.logo}
                 resizeMode="cover"
               />
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("AppStack", { screen: "Notification" })
                 }
@@ -33,14 +40,12 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
                   size={24}
                   color="black"
                 />
-              </TouchableOpacity>
+              </TouchableOpacity> */}
             </View>
 
             <TouchableOpacity
               onPress={() =>
-                switchController
-                  ? navigation.navigate("AppStack", { screen: "Profil" })
-                  : navigation.navigate("AdminStack", { screen: "Dashboard" })
+                navigation.navigate("AppStack", { screen: "Profil" })
               }
               style={styles.right}
             >
@@ -133,6 +138,54 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
       );
       break;
 
+    case "collections":
+      return (
+        <View style={styles.contain}>
+          <View style={styles.containerad}>
+            <View style={styles.left}>
+              <Image
+                source={require("../../../assets/Auth/logo.png")}
+                style={styles.logo}
+                resizeMode="cover"
+              />
+            </View>
+
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate("AdminStack", { screen: "Catalogue" })
+              }
+              style={styles.right}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  width: 105,
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 15,
+                    fontWeight: Platform.OS === "android" ? "600" : "400",
+                  }}
+                >
+                  Ajouter
+                </Text>
+                <Icon
+                  type={Icons.Ionicons}
+                  name="add-circle-sharp"
+                  size={28}
+                  color="#37AA9C"
+                  style={{ marginTop: -2 }}
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+      break;
+
     default:
       break;
   }
@@ -145,6 +198,8 @@ const styles = StyleSheet.create({
     // flex: 1,
     marginTop: 5,
     // paddingHorizontal: 8,
+    borderBottomWidth: 0.75,
+    borderColor: "rgba(0,0,0,0.2)",
     justifyContent: "center",
   },
   container: {
@@ -156,7 +211,6 @@ const styles = StyleSheet.create({
     maxWidth: 420,
     padding: 10,
     borderBottomWidth: 0.75,
-    borderColor: "rgba(0,0,0,0.2)",
     backgroundColor: Colors.grayLight,
   },
   containerad: {
@@ -179,17 +233,24 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "white",
     height: 35,
-    minWidth: 155,
-    maxWidth: 195,
+    minWidth: 115,
+    maxWidth: 150,
     alignItems: "center",
     borderRadius: 50,
     padding: 5,
     elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      height: 2,
+      width: 2,
+    },
+    shadowOpacity: 0.3,
   },
   logo: {
     height: 90,
     width: 90,
     marginTop: 9.2,
+    marginLeft: -35,
   },
   logoPoste: {
     height: 100,

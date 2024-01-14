@@ -9,7 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Collections = () => {
   return (
     <SafeAreaView style={styles.contain}>
-      <Header useName={"Abba"} />
+      <Header type={"collections"} onPress={()=>{}}  />
       <FlatList
         data={collectios}
         renderItem={({ item }) => <CollectionCard item={item} />}
