@@ -89,7 +89,12 @@ const Publication = ({ route }: any) => {
               resizeMode="cover"
             />
             <View>
-              <Text style={{ fontSize: 14.5, fontWeight: "500" }}>
+              <Text
+                style={{
+                  fontSize: Platform.OS === "android" ? 14.5 : 13,
+                  fontWeight: Platform.OS === "android" ? "500" : "400",
+                }}
+              >
                 {item.nom}
               </Text>
               <Text style={{ fontSize: 12.5, fontWeight: "300" }}>
@@ -136,13 +141,13 @@ const Publication = ({ route }: any) => {
         </View>
         <View style={styles.desc}>
           <Text
-            style={{ fontSize: 12, fontWeight: "600", textAlign: "center" }}
+            style={{ fontSize: 12, fontWeight:Platform.OS === "android" ? "600" : "400", textAlign: "center" }}
           >
             {item.desc}
           </Text>
         </View>
         <View style={styles.comment}>
-          <View style={{ flexDirection: "row", marginLeft: 20 }}>
+          <View style={{ flexDirection: "row",marginLeft:25 }}>
             <Image
               source={require("../../../assets/profil.jpg")}
               style={{
@@ -150,7 +155,7 @@ const Publication = ({ route }: any) => {
                 width: 35,
                 borderRadius: 30,
                 position: "relative",
-                right: 10,
+                right: 15,
               }}
               resizeMode="cover"
             />
@@ -161,7 +166,7 @@ const Publication = ({ route }: any) => {
                 width: 35,
                 borderRadius: 30,
                 position: "relative",
-                right: 25,
+                right: 30,
               }}
               resizeMode="cover"
             />
@@ -172,13 +177,13 @@ const Publication = ({ route }: any) => {
                 width: 35,
                 borderRadius: 30,
                 position: "relative",
-                right: 35,
+                right: 45,
               }}
               resizeMode="cover"
             />
           </View>
 
-          <Text style={{ fontSize: 12, fontWeight: "500" }}>
+          <Text style={{ fontSize: 12, fontWeight:Platform.OS === "android" ? "500" : "400" }}>
             Aiment par Moussa Zonko et 458autres personne
           </Text>
         </View>
@@ -243,7 +248,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     margin: 5,
-    width: 330,
+    // width: 350,
+    paddingHorizontal:10
   },
   input: {
     height: 35,

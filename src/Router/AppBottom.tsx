@@ -7,7 +7,7 @@ import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native
 import Colors from "../Utils/Colors";
 import Icon, { Icons } from "../Utils/Icons";
 //Bottom Screens
-import { Accueil, Collections, Favoris,  Recherche } from "../Screens";
+import { Accueil, Collections, Favoris,  Recherche,Client } from "../Screens";
 
 const TabArr = [
   {
@@ -41,7 +41,14 @@ const TabArr = [
     icon: "bookmark-outline",
     component: Favoris,
     color: Colors.primary,
-  },
+  },  {
+    route: "Client",
+    label: "Client",
+    type: Icons.FontAwesome5,
+    icon: "user",
+    component: Client,
+    color: Colors.primary,
+  }
 ];
 
 const Tab = createBottomTabNavigator();

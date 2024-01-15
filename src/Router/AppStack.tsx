@@ -29,7 +29,6 @@ function AppStack() {
         component={Poste}
         options={{ animation: "slide_from_bottom" }}
       />
-    
     </Stack.Navigator>
   );
 }

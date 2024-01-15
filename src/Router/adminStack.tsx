@@ -2,7 +2,17 @@ import * as React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Dashboard,Atelier,Catalogue,Client,Compta, Creation, Details, Modify} from "../Screens";
+import {
+  Dashboard,
+  Atelier,
+  Catalogue,
+  Client,
+  Compta,
+  Creation,
+  Details,
+  Modify,
+  InfosClient,
+} from "../Screens";
 const Stack = createNativeStackNavigator();
 
 function AdminStack() {
@@ -17,15 +27,14 @@ function AdminStack() {
         component={Details}
         options={{ animation: "slide_from_bottom" }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="Modify"
         component={Modify}
         options={{ animation: "slide_from_bottom" }}
       />
       <Stack.Screen name="Client" component={Client} />
+      <Stack.Screen name="InfosClient" component={InfosClient} />
       <Stack.Screen name="Compta" component={Compta} />
-
-
     </Stack.Navigator>
   );
 }

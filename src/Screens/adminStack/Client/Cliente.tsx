@@ -12,9 +12,17 @@ import {
 import React, { useState, useEffect } from "react";
 import Icon, { Icons } from "../../../Utils/Icons";
 import Colors from "../../../Utils/Colors";
-import { CardClient, ScanQrCode, SearchBar } from "../../../Components";
+import {
+  BackButton,
+  ButtonIcon,
+  CardClient,
+  ScanQrCode,
+  SearchBar,
+} from "../../../Components";
 import { client } from "../../../data/client";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AddClient from "./AddClient";
 
 const { width, height } = Dimensions.get("screen");
 const Cliente = () => {
@@ -22,56 +30,60 @@ const Cliente = () => {
 
   const navigation = useNavigation();
 
-  const [currentLoder, setCurrentLoder] = useState(null)
-  const handlePres=(loader)=>{
-    setCurrentLoder(loader)
-  }
+  const [currentLoder, setCurrentLoder] = useState(null);
+  const handlePress = (loader) => {
+    setCurrentLoder(loader);
+  };
 
- 
- 
   if (!currentLoder) {
     return (
-      <View style={styles.contain}>
+      <View style={[styles.contain]}>
         <ImageBackground
           source={require("../../../../assets/bannerClient.png")}
           style={[styles.banner]}
           resizeMode="cover"
         >
-          <View>
-            <TouchableOpacity
-              style={{ zIndex: 1 }}
-              onPress={() => navigation.goBack()}
-            >
-              <Icon
-                type={Icons.Ionicons}
-                name="chevron-back"
-                size={40}
-                color={Colors.black}
-                style={{ margin: 5 }}
-              />
-            </TouchableOpacity>
-  
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingHorizontal: 10,
+              zIndex: 1,
+              paddingTop: 50,
+            }}
+          >
             <Text
               style={{
                 fontSize: 25,
                 fontWeight: "bold",
                 letterSpacing: 0.5,
-                color: Colors.black,
+                color: Colors.white,
                 marginLeft: 15,
               }}
             >
-              Cliente
+              Liste Client
             </Text>
+            <ButtonIcon
+              placeholder="Ajouter"
+              color={Colors.black}
+              iconSize={24}
+              iconeName="person-add"
+              onPress={() => handlePress("AddClient")}
+              type={Icons.MaterialIcons}
+              style={{ width: 95, height: 35, zIndex: 1 }}
+            />
           </View>
           <SearchBar
             onChange={setSearchTxt}
             value={searchTxt}
-            onPress={() => handlePres("Scan")}
+            onPress={() => handlePress("Scan")}
             placeholder="Recherche"
             type="client"
+            style={{ marginTop: -25 }}
           />
         </ImageBackground>
-  
+
         <FlatList
           data={client}
           renderItem={({ item }) => <CardClient item={item} />}
@@ -80,13 +92,11 @@ const Cliente = () => {
     );
   }
   if (currentLoder == "Scan") {
-    return(
-    <ScanQrCode setCurrentLoader={setCurrentLoder}/>
-
-    )
-    
+    return <ScanQrCode setCurrentLoader={setCurrentLoder} />;
   }
- 
+  if (currentLoder == "AddClient") {
+    return <AddClient setCurrentLoader={setCurrentLoder} />;
+  }
 };
 
 export default Cliente;

@@ -24,6 +24,8 @@ export { default as Buttom } from "../Components/shared/Button";
 export { default as PublicationCard } from "../Components/shared/PublicationCard";
 export { default as PosteHeader } from "./shared/PosteHeader";
 export { default as ScanQrCode } from "./shared/ScanQrCode";
+export { default as BackButton } from "./shared/BackButton";
+
 
 //Notification
 export { default as NotifyCard } from "../Components/notification/NotifyCard";
@@ -39,6 +41,10 @@ export { default as Box } from "../Components/admin/quickyAction/Box";
 export { default as IconGestions } from "../Components/admin/quickyAction/IconGestion";
 //Client
 export { default as CardClient } from "../Components/admin/client/CardClient";
+export { default as Steps1 } from "../Components/admin/client/steps/Steps1";
+export { default as Steps2 } from "../Components/admin/client/steps/Steps2";
+export { default as StepsBanner } from "../Components/admin/client/steps/StepBanner";
+export { default as Mesure } from "../Components/admin/client/Mesure";
 //Catalogue
 export { default as CardCatalogue } from "../Components/admin/catalogue/CardCatalogue";
 export { default as RenderCatalogue } from "../Components/admin/catalogue/RenderCatalogue";

@@ -607,8 +607,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
 
     elevation: 5,
-    minHeight: Platform.OS == "ios" ? 0 : 420,
-    maxHeight: Platform.OS == "ios" ? 450 : 490,
+    minHeight: 420,
+    maxHeight: 490,
 
     backgroundColor: "#f8f9fa",
     borderColor: "gray",

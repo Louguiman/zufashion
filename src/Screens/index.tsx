@@ -35,6 +35,7 @@ export {default as Details} from './adminStack/Catalogue/Details'
 export {default as Modify} from './adminStack/Catalogue/Modify'
 
 export {default as Client} from './adminStack/Client/Cliente'
+export {default as InfosClient} from './adminStack/Client/InfosClient'
 export {default as Compta} from './adminStack/Compta/Compta'
 
 

@@ -12,6 +12,8 @@ import {
 import React, { useState } from "react";
 import Colors from "../../../Utils/Colors";
 import Icon, { Icons } from "../../../Utils/Icons";
+import { useNavigation } from "@react-navigation/native";
+import { FlatList } from "react-native-gesture-handler";
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -19,13 +21,15 @@ if (Platform.OS === "android") {
 }
 
 const CardClient = ({ item }) => {
-  // console.log("mes item :", item);
+  console.log("mes item :", item);
   const [open, setOpen] = useState(false);
   const [isCheck, setisCheck] = useState(false);
   const onPress = () => {
     // LayoutAnimation.easeInEaseOut();
     setOpen(!open);
   };
+
+  const Navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -58,42 +62,47 @@ const CardClient = ({ item }) => {
               />
               {open && <Text style={styles.txt}>Confection en Cours</Text>}
             </View>
-
-            {item.task.map((element) => {
-              return (
-                <View style={{ flexDirection: "row" }} key={element.id}>
-                  <Text style={styles.task}>{element.title}</Text>
-                  {open ? (
-                    <View
-                      style={{ flexDirection: "row", alignItems: "center" }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 14,
-                          fontWeight: "600",
-                          letterSpacing: 0.5,
-                          marginLeft: 10,
-                          color: Colors.gray,
-                        }}
-                      >
-                        {element.prix}
-                      </Text>
+            <FlatList
+              data={item.task}
+              nestedScrollEnabled
+              style={{ height: 50 }}
+              renderItem={({ item }) => {
+                return (
+                  <View style={{ flexDirection: "row" }} key={item.id}>
+                    <Text style={styles.task}>{item.modele}</Text>
+                    {open ? (
                       <View
-                        style={{
-                          height: 15,
-                          width: 5,
-                          backgroundColor: element.depence
-                            ? Colors.green
-                            : Colors.red,
-                          borderRadius: 30,
-                          marginLeft: 5,
-                        }}
-                      />
-                    </View>
-                  ) : null}
-                </View>
-              );
-            })}
+                        style={{ flexDirection: "row", alignItems: "center" }}
+                      >
+                        <Text
+                          style={{
+                            fontSize: 14,
+                            fontWeight: "600",
+                            letterSpacing: 0.5,
+                            marginLeft: 10,
+                            color: Colors.gray,
+                          }}
+                        >
+                          {item.prix}
+                        </Text>
+                        <View
+                          style={{
+                            height: 15,
+                            width: 5,
+                            backgroundColor: item.depence
+                              ? Colors.green
+                              : Colors.red,
+                            borderRadius: 30,
+                            marginLeft: 5,
+                          }}
+                        />
+                      </View>
+                    ) : null}
+                  </View>
+                );
+              }}
+            />
+            {/* {item.task.map((item) => )} */}
           </View>
         </View>
 
@@ -128,14 +137,58 @@ const CardClient = ({ item }) => {
                 {item.datelivre}
               </Text>
             </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Icon
-                type={Icons.Ionicons}
-                name="chevron-forward"
-                size={24}
-                color={Colors.green}
-              />
-              <Text style={styles.txt}>Confection Recent</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                marginTop: 10,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Icon
+                  type={Icons.Ionicons}
+                  name="chevron-forward"
+                  size={24}
+                  color={Colors.green}
+                />
+                <Text style={styles.txt}>Confection Recent</Text>
+              </View>
+
+              <TouchableOpacity
+                onPress={() => Navigation.navigate("InfosClient", { item })}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  backgroundColor: Colors.primary,
+                  padding: 3,
+                  borderRadius: 10,
+                }}
+              >
+                <Icon
+                  type={Icons.MaterialCommunityIcons}
+                  name="card-account-details-outline"
+                  size={20}
+                  color={Colors.white}
+                />
+
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: "600",
+                    color: Colors.white,
+                    marginLeft: 5,
+                  }}
+                >
+                  Details
+                </Text>
+              </TouchableOpacity>
             </View>
             <View style={{ marginTop: 10, marginLeft: 10 }}>
               {item.taskEnd.map((x) => {
@@ -168,7 +221,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    width: 330,
+    width: Platform.OS == "ios" ? 370 : 340,
     borderWidth: 1,
     paddingHorizontal: 5,
     overflow: "hidden",
