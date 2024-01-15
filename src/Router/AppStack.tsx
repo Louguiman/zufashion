@@ -9,6 +9,10 @@ import {
   Notification,
   EditProfil,
   Poste,
+  InfosClient,
+  Catalogue,
+  Details,
+  Modify,
 } from "../Screens";
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +31,18 @@ function AppStack() {
       <Stack.Screen
         name="Poste"
         component={Poste}
+        options={{ animation: "slide_from_bottom" }}
+      />
+      <Stack.Screen name="InfosClient" component={InfosClient} />
+      <Stack.Screen name="Catalogue" component={Catalogue} />
+      <Stack.Screen
+        name="Details"
+        component={Details}
+        options={{ animation: "slide_from_bottom" }}
+      />
+      <Stack.Screen
+        name="Modify"
+        component={Modify}
         options={{ animation: "slide_from_bottom" }}
       />
     </Stack.Navigator>

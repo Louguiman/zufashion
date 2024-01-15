@@ -20,23 +20,17 @@ export {default as Profil} from './AppStack/Profil'
 export {default as EditProfil} from './AppStack/EditProfil'
 export {default as Notification} from './AppStack/Notification'
 export{default as Poste} from "./AppStack/Poste"
-// ADMINSTACK SCREENS
-export {default as Dashboard} from './adminStack/Dashboard'
-export {default as Atelier} from './adminStack/Atelier/Atelier'
-export {default as Tailler} from './adminStack/Atelier/Tailleur'
-export {default as Agenda} from './adminStack/Atelier/Agenda'
-export {default as Confections} from './adminStack/Atelier/Confections'
-export {default as Setting} from './adminStack/Atelier/Setting'
 
 
-export {default as Catalogue} from './adminStack/Catalogue/Catalogue'
-export {default as Creation} from './adminStack/Catalogue/Creation'
-export {default as Details} from './adminStack/Catalogue/Details'
-export {default as Modify} from './adminStack/Catalogue/Modify'
 
-export {default as Client} from './adminStack/Client/Cliente'
-export {default as InfosClient} from './adminStack/Client/InfosClient'
-export {default as Compta} from './adminStack/Compta/Compta'
+export {default as Catalogue} from './AppStack/Catalogue/Catalogue'
+export {default as Creation} from './AppStack/Catalogue/Creation'
+export {default as Details} from './AppStack/Catalogue/Details'
+export {default as Modify} from './AppStack/Catalogue/Modify'
+
+export {default as Client} from './AppStack/Client/Cliente'
+export {default as InfosClient} from './AppStack/Client/InfosClient'
+
 
 
 

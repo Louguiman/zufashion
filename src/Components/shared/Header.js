@@ -152,7 +152,7 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
 
             <TouchableOpacity
               onPress={() =>
-                navigation.navigate("AdminStack", { screen: "Catalogue" })
+                navigation.navigate("AppStack", { screen: "Catalogue" })
               }
               style={styles.right}
             >
