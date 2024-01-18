@@ -13,6 +13,7 @@ import {
   Catalogue,
   Details,
   Modify,
+  Client,
 } from "../Screens";
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,11 @@ function AppStack() {
       <Stack.Screen
         name="Modify"
         component={Modify}
+        options={{ animation: "slide_from_bottom" }}
+      />
+      <Stack.Screen
+        name="Client"
+        component={Client}
         options={{ animation: "slide_from_bottom" }}
       />
     </Stack.Navigator>

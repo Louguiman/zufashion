@@ -25,6 +25,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import BottomSheet from "@gorhom/bottom-sheet";
 import { FlatList } from "react-native-gesture-handler";
+import { launchCamera, launchImagePicker } from "../../Utils/ImagePicker";
 
 const Poste = ({ navigation }: any) => {
   const [desc, setDesc] = useState("");
@@ -36,30 +37,19 @@ const Poste = ({ navigation }: any) => {
 
   const launcnCamera = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      quality: 1,
-      base64: true,
-    });
+    let result =await launchCamera()
 
-    if (!result.cancelled) {
-      setImage([...image, { ...result }]);
+    if (!result) {
+      setImage([...result, { ...result }]);
       // console.log("image", image);
     }
   };
   const pickImages = async () => {
     // No permissions request is necessary for launching the image library
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
-      allowsMultipleSelection: true,
-      selectionLimit: 10,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    let result =await launchImagePicker()
 
-    if (!result.cancelled) {
+    if (!result) {
       setImages(result.uri ? [...result.uri] : result.selected);
     }
   };
@@ -78,7 +68,7 @@ const Poste = ({ navigation }: any) => {
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   // variables
-  const snapPoints =  ["25%", "25%"];
+  const snapPoints = ["25%", "25%"];
 
   // callbacks
   const handleSheetChanges = useCallback((index: number) => {
@@ -86,9 +76,9 @@ const Poste = ({ navigation }: any) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.contain}>
+    <View style={styles.contain}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() =>navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon
             type={Icons.Ionicons}
             name="chevron-back-outline"
@@ -97,7 +87,15 @@ const Poste = ({ navigation }: any) => {
             style={{ marginBottom: 20 }}
           />
         </TouchableOpacity>
-        <Text style={{ fontSize: 18, fontWeight: "800", letterSpacing: 0.5,minWidth:50,maxWidth:220 }}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: "800",
+            letterSpacing: 0.5,
+            minWidth: 50,
+            maxWidth: 220,
+          }}
+        >
           Publication
         </Text>
         {desc && (
@@ -115,7 +113,7 @@ const Poste = ({ navigation }: any) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            height:60
+            height: 60,
           }}
         >
           <View>
@@ -200,7 +198,7 @@ const Poste = ({ navigation }: any) => {
           // style={{ marginVertical: 50, paddingBottom: 100 }}
         />
       )}
-       {image && (
+      {image && (
         <FlatList
           data={image}
           horizontal
@@ -263,7 +261,7 @@ const Poste = ({ navigation }: any) => {
             placeholder="Camera"
             bg={Colors.primary}
             type="main"
-            style={{height:110}}
+            style={{ height: 110 }}
           />
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>OU</Text>
           <Box
@@ -272,13 +270,11 @@ const Poste = ({ navigation }: any) => {
             placeholder="Galerie"
             bg={Colors.bottom}
             type="main"
-            style={{height:110}}
-
-
+            style={{ height: 110 }}
           />
         </View>
       </BottomSheet>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -287,6 +283,7 @@ export default Poste;
 const styles = StyleSheet.create({
   contain: {
     flex: 1,
+    paddingTop: 25,
   },
   logoPoste: {
     height: 100,
@@ -302,8 +299,8 @@ const styles = StyleSheet.create({
     minWidth: 350,
     maxWidth: 420,
     // padding: 10,
-    paddingHorizontal: 10,
-  
+    paddingHorizontal: 15,
+    marginVertical: 20,
   },
   input: {
     height: 90,

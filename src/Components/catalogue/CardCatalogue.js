@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { BlurView } from "expo-blur";
@@ -89,7 +90,7 @@ const CardCatalogue = ({ item }) => {
                 fontSize: 12,
                 color: Colors.white,
                 // letterSpacing: 1.5,
-                fontWeight: "900",
+                fontWeight: Platform.OS === "android" ? "900" : "400",
                 // marginLeft: 10,
               }}
             >
@@ -103,7 +104,7 @@ const CardCatalogue = ({ item }) => {
               <Text
                 style={{
                   fontSize: 10,
-                  fontWeight: "800",
+                  fontWeight: Platform.OS === "android" ? "800" : "500",
                   marginLeft: 3,
                   minWidth: 15,
                   maxWidth: 100,

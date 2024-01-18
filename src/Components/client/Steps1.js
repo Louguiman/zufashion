@@ -6,20 +6,31 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { InputModal } from "..";
 import Icon, { Icons } from "../../Utils/Icons";
 import Colors from "../../Utils/Colors";
+import { launchImagePicker, launchCamera } from "../../Utils/ImagePicker";
 const Steps1 = () => {
   const [name, setName] = useState("");
   const [telephone, setTelephone] = useState("");
   const [prenom, setPrenom] = useState("");
   const [email, setEmail] = useState("");
   const [adress, setAdress] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState();
   const [avatar, setAvatar] = useState(null);
   const condition = !name && !prenom && !telephone && !email && !adress;
+  const Imagepicker = async () => {
+    const Image = await launchCamera();
+    if (Image) {
+      setImage(Image);
+    }
+  };
   return (
     <View style={styles.contain}>
       <View style={{ paddingVertical: 20 }}>
         <View style={styles.button}>
-          <Image source={avatar} style={styles.photo} resizeMode="cover" />
+          <Image
+            source={{ uri: image }}
+            style={styles.photo}
+            resizeMode="cover"
+          />
           <TouchableOpacity
             style={{
               paddingVertical: 2,
@@ -31,7 +42,7 @@ const Steps1 = () => {
               right: 120,
               top: 120,
             }}
-            onPress={() => {}}
+            onPress={Imagepicker}
           >
             <Icon
               type={Icons.MaterialCommunityIcons}

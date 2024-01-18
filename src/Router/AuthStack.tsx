@@ -13,10 +13,10 @@ function AuthStack() {
     async function loadState() {
       const appData = await AsyncStorage.getItem("isAppFirstLaunched");
       if (appData == null) {
-        setIsAppFirstLaunched(false);
+        setIsAppFirstLaunched(true);
         AsyncStorage.setItem("isAppFirstLaunched", "false");
       } else {
-        setIsAppFirstLaunched(true);
+        setIsAppFirstLaunched(false);
       }
     }
     loadState();

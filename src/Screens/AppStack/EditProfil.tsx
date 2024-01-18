@@ -18,6 +18,7 @@ import { InputModal, InputSection, Buttom } from "../../Components";
 
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
+import { launchImagePicker } from "../../Utils/ImagePicker";
 
 const { width, height } = Dimensions.get("screen");
 const EditProfil = ({ route }) => {
@@ -30,30 +31,21 @@ const EditProfil = ({ route }) => {
   const [prenom, setPrenom] = useState("" || item.prenom);
   const [email, setEmail] = useState("" || item.email);
   const [adress, setAdress] = useState("" || item.adress);
-  const [image, setImage] = useState([]);
-  const [avatar, setAvatar] = useState(item.avatar || image[0]);
+  const [image, setImage] = useState();
+  const [avatar, setAvatar] = useState(item.avatar);
   const [isCheck, setIsCheck] = useState(false);
 
   const condition =
     !name && !prenom && !telephone && !email && !avatar && !adress;
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [10, 13],
-      quality: 1,
-    });
+    let result = await launchImagePicker();
 
-    if (!result.cancelled) {
-      setImage([result.uri]);
-      console.log(image);
+    if (result) {
+      setImage(result);
+      setIsCheck(true);
     }
-
-    setIsCheck(true);
   };
-
-  console.log(avatar);
 
   return (
     <LinearGradient
@@ -97,15 +89,11 @@ const EditProfil = ({ route }) => {
           {!isCheck ? (
             <Image source={avatar} style={styles.photo} resizeMode="cover" />
           ) : (
-            image.map((item) => {
-              return (
-                <Image
-                  source={{ uri: item }}
-                  style={styles.photo}
-                  resizeMode="cover"
-                />
-              );
-            })
+            <Image
+              source={{ uri: image }}
+              style={styles.photo}
+              resizeMode="cover"
+            />
           )}
 
           <View style={styles.button}>
@@ -145,6 +133,7 @@ const EditProfil = ({ route }) => {
               placeholder="Telephone"
               onChange={setTelephone}
               value={telephone}
+
             />
             <InputModal
               iconName="email"
@@ -167,14 +156,7 @@ const EditProfil = ({ route }) => {
               style={{}}
               disabled={true}
             />
-          ) : (
-            <Buttom
-              onPress={() => {}}
-              placeholder="Enregistre"
-              type="primary"
-              style={{}}
-            />
-          )}
+          ) :null}
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
@@ -200,6 +182,8 @@ const styles = StyleSheet.create({
 
     alignSelf: "center",
     elevation: 5,
+    borderWidth: 2.5,
+    borderColor: Colors.primary,
   },
   button: {
     position: "absolute",

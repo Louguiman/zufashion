@@ -1,10 +1,9 @@
-
-
 import {
   FlatList,
   Image,
   ImageBackground,
   Platform,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -27,7 +26,6 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import useFavoris from "../../Context/FavorisContext";
-import { SafeAreaView } from "react-native-safe-area-context";
 import useFavorisCollection from "../../contextCollections/FavorisContextCollections";
 import Colors from "../../Utils/Colors";
 import Icon, { Icons } from "../../Utils/Icons";
@@ -38,10 +36,10 @@ const Favoris = ({ navigation }: any) => {
   // console.log("Favoris Collections :", favorisListerCollections);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {favorisLister.length === 0 && favorisListerCollections.length === 0 ? (
         <View style={{ flex: 1, zIndex: 1 }}>
-          <Header useName="ABBA" type="main"/>
+          <Header useName="ABBA" type="main" />
           <Image
             style={styles.image}
             resizeMode="contain"
@@ -51,7 +49,7 @@ const Favoris = ({ navigation }: any) => {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: "bold",
+              fontWeight: Platform.OS === "android" ? "bold" : "500",
               color: "black",
               textAlign: "center",
             }}
@@ -72,7 +70,12 @@ const Favoris = ({ navigation }: any) => {
             }}
             style={styles.Btn}
           >
-            <Text style={{ color: "white", fontWeight: "bold" }}>
+            <Text
+              style={{
+                color: "white",
+                fontWeight: Platform.OS === "android" ? "bold" : "500",
+              }}
+            >
               Parcourir les postes
             </Text>
           </TouchableOpacity>
@@ -82,20 +85,27 @@ const Favoris = ({ navigation }: any) => {
           <Image
             source={require("../../../assets/banner.png")}
             style={{
-              height: 120,
+              height: 180,
               width: "100%",
               borderBottomRightRadius: 30,
               borderBottomLeftRadius: 30,
             }}
           />
-          <View style={{ zIndex: 1, position: "relative", top: -80 }}>
+          <View
+            style={{
+              zIndex: 1,
+              position: "relative",
+              top: Platform.OS === "android" ? -150 : -120,
+            }}
+          >
             <Text
               style={{
-                fontSize: 18,
+                fontSize: Platform.OS === "android" ? 25 : 18,
                 fontWeight: "900",
                 letterSpacing: 1.5,
                 color: Colors.white,
-                margin: 2,
+                marginLeft: 2,
+                marginBottom: 15,
               }}
             >
               Collections
@@ -118,13 +128,13 @@ const Favoris = ({ navigation }: any) => {
                 </Text>
               )}
               {favorisListerCollections.map((item, i) => (
-                <CollectionCard  type="favoris" key={i} item={item} />
+                <CollectionCard type="favoris" key={i} item={item} />
               ))}
             </ScrollView>
           </View>
           <View
             style={{
-              marginVertical: -85,
+              marginVertical: Platform.OS === "android" ? -150 : -120,
               flex: 1,
             }}
           >
@@ -149,9 +159,10 @@ const Favoris = ({ navigation }: any) => {
                   margin: 2,
                   textAlign: "center",
                   // marginTop: 80,
-                  position:"absolute",
-                  top:150,
-                  zIndex:1,left:30
+                  position: "absolute",
+                  top: 150,
+                  zIndex: 1,
+                  left: 30,
                 }}
               >
                 Pas encore de Poste au favoris
@@ -161,13 +172,16 @@ const Favoris = ({ navigation }: any) => {
               data={favorisLister}
               // horizontal
               numColumns={2}
-              columnWrapperStyle={{flex:1,justifyContent:'space-between',alignItems:'flex-start'}}
-
+              columnWrapperStyle={
+                {
+                  // flex: 1,
+                  // justifyContent: "flex-start",
+                  // alignItems: "flex-start",
+                }
+              }
               contentContainerStyle={{
-                flexGrow:  1,
-                paddingBottom: 150,
-                
-                
+                flexGrow: 1,
+                paddingBottom: 190,
               }}
               renderItem={({ item, index }) => (
                 <CardPoste
@@ -181,7 +195,7 @@ const Favoris = ({ navigation }: any) => {
           </View>
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 

@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
     padding: 5,
-    marginTop: 8,
+    marginTop: -18,
   },
   image: {
     height: 200,

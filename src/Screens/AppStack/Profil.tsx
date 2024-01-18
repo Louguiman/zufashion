@@ -16,29 +16,31 @@ const Profil = ({ navigation }: any) => {
   return (
     <LinearGradient
       colors={[Colors.bgLineaire, Colors.bgLineaire1]}
-      style={[StyleSheet.absoluteFillObject,]}
+      style={[StyleSheet.absoluteFillObject]}
     >
-    <SafeAreaView style={{flex:1}}>
-      <TouchableOpacity
-      onPress={()=>navigation.goBack()}
-        style={{
-          marginTop: 2,
-        }}
-      >
-        <Icon
-          type={Icons.Ionicons}
-          color={Colors.black}
-          name={"chevron-back-outline"}
-          size={60}
-          style={{}}
-        />
-      </TouchableOpacity>
-      <ProfileCard data={profile} />
+   
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{
+            marginTop: 2,
+          }}
+        >
+          <Icon
+            type={Icons.Ionicons}
+            color={Colors.black}
+            name={"chevron-back-outline"}
+            size={60}
+            style={{}}
+          />
+        </TouchableOpacity>
+        <ProfileCard data={profile} />
 
-      <ProfileLateral navigation={navigation} collections={favorisListerCollections} medias={favorisLister}/>
-    </SafeAreaView>
+        <ProfileLateral
+          navigation={navigation}
+          collections={favorisListerCollections}
+          medias={favorisLister}
+        />
     </LinearGradient>
-  
   );
 };
 

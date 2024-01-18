@@ -7,12 +7,15 @@ import {
   Animated,
   TouchableOpacity,
   Platform,
+  SafeAreaView,
 } from "react-native";
 
 import React, { useRef, useState } from "react";
 import { CardPoste, Header, PosteHeader } from "../../Components";
 import { Poste } from "../../data/poste";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
+import  {FloatingAction,} from "react-native-floating-action";
+import Colors from "../../Utils/Colors";
 
 const Accueil = ({ navigation }: any) => {
   const headerHeight = 0;
@@ -48,10 +51,22 @@ const Accueil = ({ navigation }: any) => {
     }
     scrollValue = y;
   };
-
+  const [user, setuser] = useState("User");
+  const actions = [
+    {
+      text: "Gestion Client",
+      icon: require("../../../assets/iconsGestion/client.png"),
+      name: "Client",
+      position: 1,
+    },
+  ];
   return (
     <SafeAreaView style={styles.contain}>
-      <Header useName="Abba" type="main" />
+      <Header
+        useName="Cheick Abba"
+        type="main"
+        onPress={() => navigation.navigate("AppStack", { screen: "Profil" })}
+      />
 
       <PosteHeader
         onPress={() => navigation.navigate("AppStack", { screen: "Poste" })}
@@ -67,8 +82,46 @@ const Accueil = ({ navigation }: any) => {
         )}
         keyExtractor={(item): any => item.id}
         // style=
-        contentContainerStyle={{ paddingBottom: 120, marginTop:60 }}
+        contentContainerStyle={{ paddingBottom: 120, marginTop: 60 }}
       />
+      {user === "User" && (
+        <Animated.View
+          style={{
+            position: "relative",
+            zIndex: 100,
+            top: Platform.OS === "ios" ? -45 : -60,
+
+            transform: [{ translateY: TranslateY }],
+            opacity,
+          }}
+        >
+          <FloatingAction
+            actions={actions}
+            onPressItem={(name) => {
+              navigation.navigate("AppStack", { screen: `${name}` });
+            }}
+            position="right"
+            shadow={{
+              shadowOpacity: 0.35,
+              shadowOffset: { width: 0, height: 5 },
+              shadowColor: "#000000",
+              shadowRadius: 3,
+            }}
+            buttonSize={65}
+            color={Colors.primary}
+            distanceToEdge={10}
+            showBackground={false}
+            iconHeight={20}
+            iconWidth={20}
+            listenKeyboard={true}
+            overlayColor="rgba(0, 0, 0, 0.9)"
+            actionsPaddingTopBottom={8}
+           
+    
+
+          />
+        </Animated.View>
+      )}
     </SafeAreaView>
   );
 };

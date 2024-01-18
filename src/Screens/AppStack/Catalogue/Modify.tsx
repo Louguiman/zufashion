@@ -70,7 +70,7 @@ const Modify = ({ route }) => {
     ]);
   };
   return (
-    <SafeAreaView style={styles.contain}>
+    <View style={styles.contain}>
       <ImageBackground
         source={require("../../../../assets/banner.png")}
         style={[styles.banner]}
@@ -229,7 +229,7 @@ const Modify = ({ route }) => {
           }}
         />
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 };
 

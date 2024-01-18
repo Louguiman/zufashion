@@ -10,6 +10,7 @@ import { FavorisProviderCollections } from "./src/contextCollections/FavorisCont
 
 // import { store } from "./src/redux/store";
 import { RootStack } from "./src/Router";
+import { StatusBar } from "react-native";
 
 export default function App() {
   const data = {
@@ -18,7 +19,8 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['right', 'bottom', 'left']}>
+    <SafeAreaView style={{ flex: 1 }} edges={['right', 'bottom', 'left','top']}>
+      <StatusBar barStyle={"light-content"} translucent/>
       {/* <Provider store={store}> */}
         <NavigationContainer>
           <GestureHandlerRootView style={{ flex: 1 }}>

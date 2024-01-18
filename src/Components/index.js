@@ -26,6 +26,8 @@ export { default as PosteHeader } from "./shared/PosteHeader";
 export { default as ScanQrCode } from "./shared/ScanQrCode";
 export { default as BackButton } from "./shared/BackButton";
 export { default as ButtonIcon } from "./shared/ButtonIcon";
+export { default as Box } from "./shared/Box";
+export { default as IconGestion } from "./shared/IconGestion";
 
 //Notification
 export { default as NotifyCard } from "../Components/notification/NotifyCard";

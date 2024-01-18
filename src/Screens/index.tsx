@@ -9,7 +9,7 @@ export {default as  Welcome} from './AuthStack/Welcome'
 export {default as  Auth} from './AuthStack/Auth'
 export {default as  UpdateUser} from './AuthStack/UpdateUser'
 export {default as  MPO} from './AuthStack/MPO'
-export {default as Onboarding} from './AuthStack/Onboarding'
+export {default as Onboarding} from './AuthStack/Onboardings'
 
 
 

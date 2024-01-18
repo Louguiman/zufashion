@@ -19,6 +19,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon, { Icons } from "../../../Utils/Icons";
 import Colors from "../../../Utils/Colors";
 import { BackButton, ButtonIcon, InputSection } from "../../../Components";
+import { launchImagePicker } from "../../../Utils/ImagePicker";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -29,39 +30,29 @@ if (Platform.OS === "android") {
 const Creation = ({ setCurrentLoader }: any) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState();
   const [images, setImages] = useState([]);
   const [isVisible, setisVisible] = useState(true);
   const [Visible, setVisible] = useState(true);
-  const [isCheck, setisCheck] = useState(false)
+  const [isCheck, setisCheck] = useState(false);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [10, 13],
-      quality: 1,
-    });
+    let result = await launchImagePicker();
 
-    if (!result.cancelled) {
-      setImage([result.uri]);
+    if (result) {
+      setImage(result);
       console.log(image);
     }
-    setisCheck(true)
+    setisCheck(true);
     opacity();
   };
   const pickImage2 = async () => {
     // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [10, 13],
-      quality: 1,
-    });
+    let result = await launchImagePicker();
 
-    if (!result.cancelled) {
-      setImage([result.uri]);
+    if (result) {
+      setImage(result);
       console.log(image);
     }
     // opacity();
@@ -69,17 +60,10 @@ const Creation = ({ setCurrentLoader }: any) => {
   const pickImages = async () => {
     // No permissions request is necessary for launching the image library
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      // allowsEditing: true,
-      allowsMultipleSelection: true,
-      selectionLimit: 10,
-      aspect: [4, 3],
-      quality: 1,
-    });
+    let result = await launchImagePicker();
 
-    if (!result.cancelled) {
-      setImages(result.uri ? [...result.uri] : result.selected);
+    if (result) {
+      setImages(result ? [...result] : result);
     }
     if (Visible) {
       opacity2();
@@ -115,50 +99,61 @@ const Creation = ({ setCurrentLoader }: any) => {
           borderBottomRightRadius: 50,
         }}
       >
-        <View style={{ position: "absolute", top: 25,flexDirection:'row',justifyContent:'space-around',alignItems:'center' }}>
-        <BackButton onPres={()=>setCurrentLoader(null)}/>
-
-
-          <Text
-            style={{
-              fontSize: 25,
-              fontWeight: "bold",
-              letterSpacing: 0.5,
-              color: Colors.black,
-              marginLeft: 15,
-            }}
-          >
-            Nouvelle Catalogue
-          </Text>
-        {
-          isCheck&&<ButtonIcon
-          placeholder="Valider"
-          color={Colors.green}
-          iconSize={24}
-          iconeName="checkcircle"
-          onPress={() => {}}
-          type={Icons.AntDesign}
-          txtColor={Colors.green}
+        <View
           style={{
-            height: 35,
-            width: 120,
-            alignSelf: "center",
-            borderColor: Colors.green,
-            marginTop: 20,
-            position:"absolute",
-            right:Platform.OS === "ios"?-45:-110
+            // position: "absolute",
+            top: 25,
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            // width:350,
+            paddingTop: Platform.OS === "android" ? -8 : 2,
+            paddingHorizontal:Platform.OS === "android" ?  8:15,
           }}
-        />
-        }
-            
- 
+        >
+          <>
+            <BackButton onPres={() => setCurrentLoader(null)} />
+
+            <Text
+              style={{
+                fontSize: Platform.OS === "android" ? 18 : 15,
+                fontWeight: Platform.OS === "android" ? "bold" : "500",
+                letterSpacing: 0.5,
+                color: Colors.black,
+                marginLeft: -15,
+              }}
+            >
+              Nouvelle Catalogue
+            </Text>
+          </>
+
+          {isCheck && (
+            <ButtonIcon
+              placeholder="Valider"
+              color={Colors.green}
+              iconSize={24}
+              iconeName="checkcircle"
+              onPress={() => {}}
+              type={Icons.AntDesign}
+              txtColor={Colors.green}
+              style={{
+                height: 35,
+                width: 95,
+                alignSelf: "center",
+                borderColor: Colors.green,
+                // marginTop: 20,
+                // position: "absolute",
+                right: Platform.OS === "ios" ? -10 : 0,
+              }}
+            />
+          )}
         </View>
         <ImageBackground
           source={require("../../../../assets/blur.png")}
           resizeMode="cover"
           style={styles.blur}
           imageStyle={{
-            height: 170,
+            height: 180,
             borderRadius: 10,
           }}
         >
@@ -225,7 +220,7 @@ const Creation = ({ setCurrentLoader }: any) => {
                     color={Colors.black}
                     iconSize={24}
                     iconeName="pluscircle"
-                    onPress={() => pickImage()}
+                    onPress={ pickImage}
                     type={Icons.AntDesign}
                     style={{
                       height: 45,
@@ -238,20 +233,16 @@ const Creation = ({ setCurrentLoader }: any) => {
                   <Text style={styles.txt}>Une Photo de Couverture</Text>
                 </>
               ) : (
-                image.map((item) => {
-                  return (
-                    <TouchableOpacity
-                      style={{ alignSelf: "center" }}
-                      onPress={() => (isVisible ? pickImage() : pickImage2())}
-                    >
-                      <Image
-                        source={{ uri: item }}
-                        style={styles.photo}
-                        resizeMode="cover"
-                      />
-                    </TouchableOpacity>
-                  );
-                })
+                <TouchableOpacity
+                  style={{ alignSelf: "center" }}
+                  onPress={() => (isVisible ? pickImage() : pickImage2())}
+                >
+                  <Image
+                    source={{ uri: image }}
+                    style={styles.photo}
+                    resizeMode="cover"
+                  />
+                </TouchableOpacity>
               )}
             </View>
             <View
@@ -267,7 +258,7 @@ const Creation = ({ setCurrentLoader }: any) => {
                     color={Colors.black}
                     iconSize={24}
                     iconeName="pluscircle"
-                    onPress={() => pickImages()}
+                    onPress={pickImages}
                     type={Icons.AntDesign}
                     style={{
                       height: 45,
@@ -358,7 +349,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   blurView: {
-    height: Platform.OS === "ios" ? 460 : 460,
+    height:  460,
 
     width: "98%",
     // marginTop:10

@@ -204,7 +204,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                     />
                     <Text style={styles.rightText}>{item.likeCount}</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     onPress={() => {}}
                     style={{
                       flexDirection: "row",
@@ -219,7 +219,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                       color={Colors.primary}
                     />
                     <Text style={styles.rightText}>{item.shareCount}</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
 
                   <TouchableOpacity
                     onPress={() => setShowComment(!showComment)}
@@ -286,7 +286,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
           <Animated.View style={styles.containerFavoris} key={item.id}>
             <View style={styles.headerFavoris}>
               <Swiper
-                height={150}
+                height={Platform.OS === "ios" ? 230 : 220}
                 width={Platform.OS === "ios" ? "100%" : "100%"}
                 image={item.img}
                 // borderRadius={150}
@@ -314,21 +314,27 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                 }}
               >
                 {isFavoris ? (
-                  <MaterialCommunityIcons
+                  <Icon
+                    type={Icons.MaterialCommunityIcons}
                     name="bookmark"
                     size={24}
                     color={Colors.primary}
                   />
                 ) : (
-                  <Feather name="bookmark" size={24} color="black" />
+                  <Icon
+                    type={Icons.Feather}
+                    name="bookmark"
+                    size={24}
+                    color="black"
+                  />
                 )}
               </AnimatedTouch>
             </View>
-            <View style={styles.descFavoris}>
+            {/* <View style={styles.descFavoris}>
               <Text style={styles.descTxtFavoris} multiline>
                 {item.desc.substring(0, 90).padEnd(96, "...")}
               </Text>
-            </View>
+            </View> */}
 
             <View style={styles.leftFavoris}>
               <Image
@@ -339,8 +345,8 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
               <View>
                 <Text
                   style={{
-                    fontSize: Platform.OS === "ios" ? 11 : 12,
-                    fontWeight: Platform.OS === "ios" ? "300" : "800",
+                    fontSize: Platform.OS === "ios" ? 10 : 12,
+                    fontWeight: Platform.OS === "ios" ? "500" : "800",
                     letterSpacing: 0.5,
                     marginBottom: 1.5,
                     marginLeft: 5,
@@ -370,88 +376,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
       break;
     case "profil":
       return (
-        <SafeAreaView style={{}}>
-          {visible && (
-            <BlurView tint="dark" intensity={150} style={styles.blurViewProfil}>
-              <View style={styles.modalHeaderProfil}>
-                <Image
-                  source={item.avatar}
-                  style={styles.avatar}
-                  resizeMode="cover"
-                />
-                <View>
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      fontWeight: "800",
-                      letterSpacing: 0.5,
-                      marginBottom: 1,
-                      color: Colors.white,
-                    }}
-                  >
-                    {item.nom}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontSize: 8,
-                      letterSpacing: 0.5,
-                      color: Colors.darkGray,
-                    }}
-                  >
-                    {item.createAt}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => setVisible(!visible)}
-                  style={{
-                    position: "absolute",
-                    right: 10,
-                    top: 5,
-                    height: 25,
-                    width: 25,
-                    backgroundColor: Colors.white,
-                    borderRadius: 20,
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Icon
-                    type={Icons.AntDesign}
-                    color={Colors.red}
-                    name="closecircle"
-                    size={20}
-                  />
-                </TouchableOpacity>
-              </View>
-
-              <InputModal
-                iconName={"account"}
-                onChange={setFullName}
-                placeholder={"Notre nom Complete"}
-                value={fullName}
-              />
-              <InputModal
-                iconName={"phone"}
-                onChange={setTel}
-                placeholder={"Numero Telephone"}
-                value={tel}
-                style={{ marginTop: -10 }}
-              />
-
-              <Buttom
-                onPress={() => {}}
-                placeholder="Envoyer"
-                type="btnModal"
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  height: 30,
-                  width: 75,
-                }}
-              />
-            </BlurView>
-          )}
+        <View style={{}}>
           <AnimatedTouch
             // animation="fadeInUp"
             // delay={index * 100}
@@ -469,7 +394,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
             <Animated.View style={styles.containerProfil} key={item.id}>
               <View style={styles.headerProfil}>
                 <Swiper
-                  height={150}
+                  height={Platform.OS === "ios" ? 230 : 220}
                   width={Platform.OS === "ios" ? "100%" : "100%"}
                   image={item.img}
                   // borderRadius={150}
@@ -497,21 +422,27 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                   }}
                 >
                   {isFavoris ? (
-                    <MaterialCommunityIcons
+                    <Icon
+                      type={Icons.MaterialCommunityIcons}
                       name="bookmark"
                       size={24}
                       color={Colors.primary}
                     />
                   ) : (
-                    <Feather name="bookmark" size={24} color="black" />
+                    <Icon
+                      type={Icons.Feather}
+                      name="bookmark"
+                      size={24}
+                      color="black"
+                    />
                   )}
                 </AnimatedTouch>
               </View>
-              <View style={styles.descProfil}>
+              {/* <View style={styles.descProfil}>
                 <Text style={styles.descTxtProfil} multiline>
                   {item.desc.substring(0, 90).padEnd(96, "...")}
                 </Text>
-              </View>
+              </View> */}
 
               <View style={styles.leftProfil}>
                 <Image
@@ -522,13 +453,13 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                 <View>
                   <Text
                     style={{
-                      fontSize: Platform.OS === "ios" ? 11 : 12,
+                      fontSize: Platform.OS === "ios" ? 12 : 12,
                       fontWeight: Platform.OS === "ios" ? "300" : "800",
                       letterSpacing: 0.5,
                       marginBottom: 1.5,
                       marginLeft: 5,
-                      minWidth: 75,
-                      maxWidth: 100,
+                      // minWidth: 75,
+                      // maxWidth: 100,
                     }}
                   >
                     {item.nom}
@@ -546,22 +477,10 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                     {item.createAt}
                   </Text>
                 </View>
-                <Buttom
-                  type="btnRdvIcon"
-                  onPress={() => setVisible(!visible)}
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRaduis: 15,
-                    position: "absolute",
-                    right: -45,
-                    elevation: 5,
-                  }}
-                />
               </View>
             </Animated.View>
           </AnimatedTouch>
-        </SafeAreaView>
+        </View>
       );
       break;
 
@@ -646,6 +565,7 @@ const styles = StyleSheet.create({
     marginLeft: Platform.OS === "ios" ? 0 : 10,
     position: "relative",
     right: -10,
+    paddingHorizontal: 10,
   },
   rightText: {
     fontSize: Platform.OS === "ios" ? 10.5 : 13,
@@ -746,7 +666,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
     position: "absolute",
     bottom: 3,
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
+    width: Platform.OS == "ios" ? 185 : 174,
   },
 
   //CardPoste Profil
@@ -801,7 +722,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     // height: 50,
     marginLeft: Platform.OS === "ios" ? 0 : 0,
-    paddingVertical: 2,
+    padding: Platform.OS === "ios" ? 8 : 0,
     position: "absolute",
     bottom: 3,
   },

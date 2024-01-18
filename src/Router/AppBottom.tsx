@@ -1,13 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as Animatable from "react-native-animatable";
-import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 //constant
 import Colors from "../Utils/Colors";
 import Icon, { Icons } from "../Utils/Icons";
 //Bottom Screens
-import { Accueil, Collections, Favoris,  Recherche,Client } from "../Screens";
+import { Accueil, Collections, Favoris, Recherche, Client } from "../Screens";
 
 const TabArr = [
   {
@@ -41,19 +47,20 @@ const TabArr = [
     icon: "bookmark-outline",
     component: Favoris,
     color: Colors.primary,
-  },  {
-    route: "Client",
-    label: "Client",
-    type: Icons.FontAwesome5,
-    icon: "user",
-    component: Client,
-    color: Colors.primary,
-  }
+  },
+  // {
+  //   route: "Client",
+  //   label: "Client",
+  //   type: Icons.FontAwesome5,
+  //   icon: "user",
+  //   component: Client,
+  //   color: Colors.primary,
+  // },
 ];
 
 const Tab = createBottomTabNavigator();
 
-const TabButton = (props:any) => {
+const TabButton = (props: any) => {
   const { item, onPress, accessibilityState } = props;
   const focused = accessibilityState.selected;
   const viewRef = useRef<any>(null);
@@ -74,7 +81,7 @@ const TabButton = (props:any) => {
     <TouchableOpacity
       onPress={onPress}
       activeOpacity={1}
-      style={[styles.container, { flex: focused ? 1 : 0.50 }]}
+      style={[styles.container, { flex: focused ? 1 : 0.5 }]}
     >
       <View>
         <Animatable.View
@@ -84,17 +91,12 @@ const TabButton = (props:any) => {
             { backgroundColor: item.color, borderRadius: 16 },
           ]}
         />
-        <View
-          style={
-            styles.btn
-          }
-        >
+        <View style={styles.btn}>
           <Icon
             type={item.type}
             name={item.icon}
             color={focused ? Colors.black : Colors.gray}
             style={{}}
-            
           />
           <Animatable.View ref={textViewRef}>
             {focused && (
@@ -102,7 +104,8 @@ const TabButton = (props:any) => {
                 style={{
                   color: Colors.black,
                   paddingHorizontal: 8,
-                  fontSize:15,fontWeight:'500'
+                  fontSize: 15,
+                  fontWeight: "500",
                 }}
               >
                 {item.label}
@@ -121,7 +124,7 @@ export default function AppBottom() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height:Platform.OS === "ios" ? 80:60,
+          height: Platform.OS === "ios" ? 80 : 60,
           position: "absolute",
           bottom: 0,
           backgroundColor: Colors.bottom,
@@ -149,7 +152,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    flex:1
+    flex: 1,
   },
   btn: {
     flexDirection: "row",

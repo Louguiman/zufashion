@@ -13,14 +13,18 @@ import Colors from "../../Utils/Colors";
 import { useNavigation } from "@react-navigation/native";
 import Icon, { Icons } from "../../Utils/Icons";
 
-const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
-  const [switchController, setswitchController] = useState(0);
+const Header = ({
+  useName,
+  onPress,
+  type = "main" || "admin" || "poste",
+  style,
+}) => {
   const navigation = useNavigation();
   switch (type) {
     case "main":
       return (
         <View style={styles.contain}>
-          <View style={styles.container}>
+          <View style={[styles.container]}>
             <View style={styles.left}>
               <Image
                 source={require("../../../assets/Auth/logo.png")}
@@ -43,17 +47,12 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
               </TouchableOpacity> */}
             </View>
 
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("AppStack", { screen: "Profil" })
-              }
-              style={styles.right}
-            >
+            <TouchableOpacity onPress={onPress} style={[styles.right, style]}>
               <View
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-around",
-                  width: 120,
+                  width: 190,
                   alignItems: "center",
                 }}
               >
@@ -74,114 +73,44 @@ const Header = ({ useName, onPress, type = "main" || "admin" || "poste" }) => {
         </View>
       );
       break;
-    case "admin":
-      return (
-        <View style={styles.contain}>
-          <View style={styles.containerad}>
-            <View style={styles.left}>
-              <Image
-                source={require("../../../assets/Auth/logo.png")}
-                style={styles.logo}
-                resizeMode="cover"
-              />
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("AppStack", { screen: "Notification" })
-                }
-              >
-                <Badge style={{ position: "absolute", left: 14, bottom: 12 }}>
-                  10+
-                </Badge>
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="black"
-                />
-              </TouchableOpacity>
-            </View>
-
-            <TouchableOpacity
-              onPress={() =>
-                !switchController
-                  ? navigation.navigate("AppStack", { screen: "Profil" })
-                  : navigation.navigate("AdminStack", { screen: "Dashboard" })
-              }
-              style={styles.right}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  width: 120,
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  source={{
-                    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPnozsb1QEhjyjE7p-bGl9hQOkJh0brsUKoA&usqp=CAU",
-                  }}
-                  style={{
-                    height: 25,
-                    width: 25,
-                    borderRadius: 15,
-                  }}
-                  resizeMode="cover"
-                />
-                <Text style={styles.txtBtn}>{useName}</Text>
-
-                <MaterialIcons name="verified" size={24} color="#37AA9C" />
-              </View>
-              <Ionicons name="ios-settings" size={20} color="black" />
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-      break;
 
     case "collections":
       return (
-        <View style={styles.contain}>
-          <View style={styles.containerad}>
-            <View style={styles.left}>
-              <Image
-                source={require("../../../assets/Auth/logo.png")}
-                style={styles.logo}
-                resizeMode="cover"
-              />
-            </View>
+        <View style={[styles.containerad]}>
+          <View style={styles.left}>
+            <Image
+              source={require("../../../assets/Auth/logo.png")}
+              style={styles.logo}
+              resizeMode="cover"
+            />
+          </View>
 
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("AppStack", { screen: "Catalogue" })
-              }
-              style={styles.right}
+          <TouchableOpacity onPress={onPress} style={[styles.right, style]}>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                width: 105,
+                alignItems: "center",
+              }}
             >
-              <View
+              <Text
                 style={{
-                  flexDirection: "row",
-                  justifyContent: "space-around",
-                  width: 105,
-                  alignItems: "center",
+                  fontSize: 15,
+                  fontWeight: Platform.OS === "android" ? "600" : "400",
                 }}
               >
-                <Text
-                  style={{
-                    fontSize: 15,
-                    fontWeight: Platform.OS === "android" ? "600" : "400",
-                  }}
-                >
-                  Ajouter
-                </Text>
-                <Icon
-                  type={Icons.Ionicons}
-                  name="add-circle-sharp"
-                  size={28}
-                  color="#37AA9C"
-                  style={{ marginTop: -2 }}
-                />
-              </View>
-            </TouchableOpacity>
-          </View>
+                Ajouter
+              </Text>
+              <Icon
+                type={Icons.Ionicons}
+                name="add-circle-sharp"
+                size={28}
+                color="#37AA9C"
+                style={{ marginTop: -2 }}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
       );
       break;
@@ -200,15 +129,15 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 8,
     borderBottomWidth: 0.75,
     borderColor: "rgba(0,0,0,0.2)",
-    justifyContent: "center",
+    // justifyContent: "center",
   },
   container: {
     flexDirection: "row",
     justifyContent: "space-between",
     height: 45,
     alignItems: "center",
-    minWidth: 350,
-    maxWidth: 420,
+    // minWidth: 250,
+    // maxWidth: 320,
     padding: 10,
     borderBottomWidth: 0.75,
     backgroundColor: Colors.grayLight,
@@ -218,8 +147,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     height: 45,
     alignItems: "center",
-    minWidth: 350,
-    maxWidth: 420,
+    // minWidth: 350,
+    // maxWidth: 420,
     padding: 10,
   },
   left: {
@@ -233,8 +162,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "white",
     height: 35,
-    minWidth: 115,
-    maxWidth: 150,
+    // minWidth: 215,
+    // maxWidth: 350,
     alignItems: "center",
     borderRadius: 50,
     padding: 5,
@@ -269,7 +198,7 @@ const styles = StyleSheet.create({
   },
   txtBtn: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: Platform.OS === "android" ? "bold" : "400",
     letterSpacing: 0.5,
     // width: 90,
     textAlign: "center",

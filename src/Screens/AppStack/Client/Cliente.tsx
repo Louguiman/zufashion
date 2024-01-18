@@ -37,6 +37,7 @@ const Cliente = () => {
   if (!currentLoder) {
     return (
       <View style={[styles.contain]}>
+
         <ImageBackground
           source={require("../../../../assets/bannerClient.png")}
           style={[styles.banner]}

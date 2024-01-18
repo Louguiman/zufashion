@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Platform,
+  SafeAreaView,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -43,7 +44,7 @@ const Details = ({ route }: any) => {
     <View style={styles.contain}>
       <ImageBackground
         source={catalogueData?.cover}
-        style={{ height: 285, width: "100%" }}
+        style={{ height: 295, width: "100%" }}
         resizeMode="cover"
         imageStyle={{
           borderBottomLeftRadius: 30,
