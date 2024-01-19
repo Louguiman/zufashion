@@ -31,20 +31,6 @@ const Header = ({
                 style={styles.logo}
                 resizeMode="cover"
               />
-              {/* <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("AppStack", { screen: "Notification" })
-                }
-              >
-                <Badge style={{ position: "absolute", left: 14, bottom: 12 }}>
-                  10+
-                </Badge>
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color="black"
-                />
-              </TouchableOpacity> */}
             </View>
 
             <TouchableOpacity onPress={onPress} style={[styles.right, style]}>
@@ -111,6 +97,25 @@ const Header = ({
               />
             </View>
           </TouchableOpacity>
+        </View>
+      );
+      break;
+    case "favoris":
+      return (
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            // backgroundColor: "red",
+            height: 75,
+            borderBottomColor: Colors.primary,
+          }}
+        >
+          <Image
+            source={require("../../../assets/Auth/logo.png")}
+            style={{ width: 110, height: 110, marginTop: 10 }}
+            resizeMode="cover"
+          />
         </View>
       );
       break;

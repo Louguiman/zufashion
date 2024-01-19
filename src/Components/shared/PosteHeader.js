@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   Animated,
+  Platform,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import Icon, { Icons } from "../../Utils/Icons";
@@ -60,12 +61,12 @@ const PosteHeader = ({ onPress, style, translateY, opacity }) => {
           <Text
             style={{
               fontSize: 15,
-              fontWeight: "800",
+              fontWeight: Platform.OS === "ios" ? "500" : "800",
               letterSpacing: 0.5,
               color: Colors.white,
             }}
           >
-            Plublier Maintenant
+            Publier Maintenant !!!
           </Text>
         </View>
         <Icon

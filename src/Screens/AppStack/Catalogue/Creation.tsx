@@ -16,10 +16,11 @@ import * as ImagePicker from "expo-image-picker";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Icon, { Icons } from "../../../Utils/Icons";
+
 import Colors from "../../../Utils/Colors";
 import { BackButton, ButtonIcon, InputSection } from "../../../Components";
 import { launchImagePicker } from "../../../Utils/ImagePicker";
+import Icon, { Icons } from "../../../Utils/Icons";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {
@@ -107,12 +108,12 @@ const Creation = ({ setCurrentLoader }: any) => {
             justifyContent: "space-between",
             alignItems: "center",
             // width:350,
-            paddingTop: Platform.OS === "android" ? -8 : 2,
+            paddingTop: Platform.OS === "android" ? -5 : 10,
             paddingHorizontal:Platform.OS === "android" ?  8:15,
           }}
         >
           <>
-            <BackButton onPres={() => setCurrentLoader(null)} />
+            <BackButton onPres={() => setCurrentLoader(null)} style={{position:'relattive',top:0,left:0}} />
 
             <Text
               style={{
@@ -123,7 +124,7 @@ const Creation = ({ setCurrentLoader }: any) => {
                 marginLeft: -15,
               }}
             >
-              Nouvelle Catalogue
+              Creation du Catalogue
             </Text>
           </>
 
@@ -374,7 +375,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight:Platform.OS==="android"? "600":"400",
     letterSpacing: 0.5,
     color: Colors.white,
     textAlign: "center",

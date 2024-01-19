@@ -110,7 +110,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
             <Animated.View style={styles.container} key={item.id}>
               <View style={styles.header}>
                 <Swiper
-                  height={300}
+                  height={365}
                   width={Platform.OS === "ios" ? "100%" : 350}
                   image={item.img}
                   borderRadius={150}
@@ -148,11 +148,11 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                   )}
                 </AnimatedTouch>
               </View>
-              <View style={styles.desc}>
+              {/* <View style={styles.desc}>
                 <Text style={styles.descTxt} multiline>
                   {item.desc}
                 </Text>
-              </View>
+              </View> */}
               <View style={styles.footer}>
                 <View style={styles.left}>
                   <Image
@@ -162,7 +162,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                   />
                   <View
                     style={{
-                      marginLeft: Platform.OS === "ios" ? -20 : 0,
+                      marginLeft: Platform.OS === "ios" ? -25 : -8,
                     }}
                   >
                     <Text
@@ -170,7 +170,7 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                         fontSize: Platform.OS === "ios" ? 12 : 15,
                         fontWeight: Platform.OS === "ios" ? "400" : "800",
                         letterSpacing: 0.5,
-                        marginBottom: 1.5,
+                        marginBottom: 4.5,
                       }}
                     >
                       {item.nom}
@@ -188,18 +188,11 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
                   </View>
                 </View>
                 <View style={styles.right}>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                    }}
-                  >
+                  <TouchableOpacity onPress={() => {}} style={styles.touch}>
                     <Icon
                       type={Icons.Ionicons}
                       name="heart-outline"
-                      size={24}
+                      size={27}
                       color={Colors.primary}
                     />
                     <Text style={styles.rightText}>{item.likeCount}</Text>
@@ -223,16 +216,12 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
 
                   <TouchableOpacity
                     onPress={() => setShowComment(!showComment)}
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                    }}
+                    style={styles.touch}
                   >
                     <Icon
                       type={Icons.Ionicons}
                       name="chatbubble-outline"
-                      size={24}
+                      size={26}
                       color={Colors.primary}
                     />
 
@@ -374,115 +363,6 @@ const CardPoste = ({ item, index, type = "main" || "favoris" || "profil" }) => {
         </AnimatedTouch>
       );
       break;
-    case "profil":
-      return (
-        <View style={{}}>
-          <AnimatedTouch
-            // animation="fadeInUp"
-            // delay={index * 100}
-            // duration={300}
-            // useNativeDriver
-            activeOpacity={0.8}
-            style={styles.contain}
-            onPress={() =>
-              navigation.navigate("AppStack", {
-                screen: "Publication",
-                params: { item },
-              })
-            }
-          >
-            <Animated.View style={styles.containerProfil} key={item.id}>
-              <View style={styles.headerProfil}>
-                <Swiper
-                  height={Platform.OS === "ios" ? 230 : 220}
-                  width={Platform.OS === "ios" ? "100%" : "100%"}
-                  image={item.img}
-                  // borderRadius={150}
-                  type="main"
-                />
-
-                <AnimatedTouch
-                  animation="pulse"
-                  easing="ease-out"
-                  iterationCount="infinite"
-                  onPress={() => {
-                    handleClick();
-                  }}
-                  style={{
-                    height: 35,
-                    width: 35,
-                    borderRadius: 30,
-                    backgroundColor: "white",
-                    elevation: 5,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    position: "absolute",
-                    bottom: 15,
-                    right: 10,
-                  }}
-                >
-                  {isFavoris ? (
-                    <Icon
-                      type={Icons.MaterialCommunityIcons}
-                      name="bookmark"
-                      size={24}
-                      color={Colors.primary}
-                    />
-                  ) : (
-                    <Icon
-                      type={Icons.Feather}
-                      name="bookmark"
-                      size={24}
-                      color="black"
-                    />
-                  )}
-                </AnimatedTouch>
-              </View>
-              {/* <View style={styles.descProfil}>
-                <Text style={styles.descTxtProfil} multiline>
-                  {item.desc.substring(0, 90).padEnd(96, "...")}
-                </Text>
-              </View> */}
-
-              <View style={styles.leftProfil}>
-                <Image
-                  source={item.avatar}
-                  style={styles.avatarFavoris}
-                  resizeMode="cover"
-                />
-                <View>
-                  <Text
-                    style={{
-                      fontSize: Platform.OS === "ios" ? 12 : 12,
-                      fontWeight: Platform.OS === "ios" ? "300" : "800",
-                      letterSpacing: 0.5,
-                      marginBottom: 1.5,
-                      marginLeft: 5,
-                      // minWidth: 75,
-                      // maxWidth: 100,
-                    }}
-                  >
-                    {item.nom}
-                  </Text>
-
-                  <Text
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: 0.5,
-                      marginLeft: 1,
-                      fontWeight: Platform.OS == "ios" ? "200" : "500",
-                      color: Colors.darkGray,
-                    }}
-                  >
-                    {item.createAt}
-                  </Text>
-                </View>
-              </View>
-            </Animated.View>
-          </AnimatedTouch>
-        </View>
-      );
-      break;
 
     default:
       break;
@@ -503,17 +383,7 @@ const styles = StyleSheet.create({
 
     elevation: 5,
   },
-  blurView: {
-    backgroundColor: Colors.background,
-    height: Platform.OS == "ios" ? 310 : 300,
-    width: Platform.OS == "ios" ? 370 : 352,
-    position: "absolute",
-    alignSelf: "center",
-    right: Platform.OS == "ios" ? 1.5 : 3,
-    top: 8,
-    borderRadius: Platform.OS == "ios" ? 50 : 10,
-    zIndex: 1,
-  },
+
   container: {
     // padding: 8,
     marginVertical: Platform.OS === "ios" ? 8 : 8,
@@ -568,23 +438,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   rightText: {
-    fontSize: Platform.OS === "ios" ? 10.5 : 13,
+    fontSize: Platform.OS === "ios" ? 12.5 : 13,
     fontWeight: "400",
     marginLeft: 1.5,
   },
   avatar: {
-    height: 35,
-    width: 35,
-    borderRadius: 30,
-    margin: 5,
+    height: 47,
+    width: 47,
+    borderRadius: 70,
+    margin: 8,
+    borderWidth: 2.5,
+    borderColor: Colors.primary,
   },
   left: {
     flexDirection: "row",
     justifyContent: "space-around",
-    width: Platform.OS === "ios" ? 210 : 180,
+    width: Platform.OS === "ios" ? 230 : 190,
     alignItems: "center",
-    height: 50,
-    marginLeft: Platform.OS === "ios" ? -10 : -10,
+    height: 55,
+    marginLeft: Platform.OS === "ios" ? -20 : -20,
   },
   descTxt: {
     fontSize: 15,
@@ -669,68 +541,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     width: Platform.OS == "ios" ? 185 : 174,
   },
-
-  //CardPoste Profil
-  containerProfil: {
-    // padding: 2,
-    margin: Platform.OS == "ios" ? 0 : 3,
-    borderRadius: 10,
-    shadowColor: Colors.black,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-    height: Platform.OS == "ios" ? 295 : 255,
-
-    backgroundColor: "#f8f9fa",
-    borderColor: "gray",
-    borderwidth: 0.8,
-    width: Platform.OS == "ios" ? 185 : 170,
-    alignSelf: "center",
-
-    // maxWidth: "98%",
-    overflow: "hidden",
-  },
-
-  headerProfil: {
-    alignSelf: "center",
-
-    // flex: 5,
-  },
-
-  avatarProfil: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    // margin: 5,
-  },
-
-  descTxtProfil: {
-    fontSize: 12,
-    fontWeight: "400",
-    textAlign: "center",
-    marginTop: 1,
-    padding: 2,
-    fontWeight: "400",
-  },
-  leftProfil: {
+  touch: {
     flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
-    justifyContent: "space-evenly",
-    // height: 50,
-    marginLeft: Platform.OS === "ios" ? 0 : 0,
-    padding: Platform.OS === "ios" ? 8 : 0,
-    position: "absolute",
-    bottom: 3,
-  },
-  modalHeaderProfil: {
-    flexDirection: "row",
-    // justifyContent: "space-around",
-    width: 180,
-    alignItems: "center",
-    height: 50,
+    // width:50
   },
 });

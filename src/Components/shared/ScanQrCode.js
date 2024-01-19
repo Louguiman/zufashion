@@ -45,7 +45,7 @@ const ScanQrCode = ({ setCurrentLoader }) => {
     <>
       <TouchableOpacity
         onPress={() => setCurrentLoader(null)}
-        style={{ zIndex: 1, position: "absolute", top: 10, left: 5 }}
+        style={{ zIndex: 1, position: "absolute", top: 25, left: 5 }}
       >
         <Icon
           type={Icons.AntDesign}

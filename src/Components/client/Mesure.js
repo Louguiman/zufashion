@@ -20,7 +20,7 @@ const Mesure = ({ item }) => {
         borderRadius: 10,
       }}
     >
-      <View style={styles.header}>
+      {/* <View style={styles.header}>
         <View
           style={{
             flex: 4,
@@ -55,6 +55,10 @@ const Mesure = ({ item }) => {
             </View>
           </View>
         </View>
+      </View> */}
+      <View style={styles.divider}>
+        <Text style={styles.txtHeader}>Modele</Text>
+        <Text style={styles.txtBody}>{item.modele}</Text>
       </View>
 
       <View style={styles.container}>
@@ -175,11 +179,18 @@ export default Mesure;
 
 const styles = StyleSheet.create({
   background: {
-    height: (height / 5) * 2 + 110,
+    height: height / 2.2,
     width: width - 12,
     alignSelf: "center",
     marginVertical: 10,
     elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      height: 2,
+      width: 2,
+    },
+    shadowOpacity: 0.5,
+    justifyContent: "center",
   },
   header: {
     height: 120,

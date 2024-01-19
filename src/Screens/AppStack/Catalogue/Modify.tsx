@@ -86,7 +86,7 @@ const Modify = ({ route }) => {
           }}
         >
           <View style={{ padding: 5 }}>
-                   <BackButton onPres={()=>navigation.goBack()}/>
+                   <BackButton onPres={()=>navigation.goBack()} style={{position:"relative",top:0}}/>
 
             <Text style={styles.headerTxt}>
               Ajouter un Modele a la Collections
@@ -156,7 +156,7 @@ const Modify = ({ route }) => {
             />
             <Text style={styles.txt}>Une Photo de Couverture</Text> */}
           </View>
-          <View style={{ height: 350, marginTop: 10 }}>
+          <View style={{ height: 390, marginTop: 10 }}>
             <FlatList
               data={item}
               numColumns={2}
@@ -204,7 +204,7 @@ const Modify = ({ route }) => {
               borderColor: Colors.green,
               // marginTop: 10,
               position: "absolute",
-              bottom:Platform.OS === "ios" ? 50 : 25,
+              bottom:Platform.OS === "ios" ? 80 : 50,
             }}
           />
         </ImageBackground>
@@ -225,7 +225,7 @@ const Modify = ({ route }) => {
             color: Colors.green,
             zIndex: 1,
             position: "absolute",
-            bottom:Platform.OS === "ios" ? 10 : 0,
+            bottom:Platform.OS === "ios" ? 15 : 5,
           }}
         />
       </ImageBackground>
@@ -259,6 +259,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     color: Colors.black,
     textTransform: "uppercase",
+    marginTop:5
   },
   txt: {
     fontSize: 16,

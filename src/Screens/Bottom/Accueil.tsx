@@ -66,6 +66,7 @@ const Accueil = ({ navigation }: any) => {
         useName="Cheick Abba"
         type="main"
         onPress={() => navigation.navigate("AppStack", { screen: "Profil" })}
+        style={{}}
       />
 
       <PosteHeader
@@ -107,7 +108,7 @@ const Accueil = ({ navigation }: any) => {
               shadowColor: "#000000",
               shadowRadius: 3,
             }}
-            buttonSize={65}
+            buttonSize={60}
             color={Colors.primary}
             distanceToEdge={10}
             showBackground={false}
@@ -116,8 +117,9 @@ const Accueil = ({ navigation }: any) => {
             listenKeyboard={true}
             overlayColor="rgba(0, 0, 0, 0.9)"
             actionsPaddingTopBottom={8}
-           
-    
+            overrideWithAction={true}
+            dismissKeyboardOnPress={true}
+            
 
           />
         </Animated.View>

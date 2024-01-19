@@ -5,7 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
-  SafeAreaView,
+  
   StatusBar,
   Platform,
 } from "react-native";
@@ -13,6 +13,7 @@ import React from "react";
 import Onboarding from "react-native-onboarding-swiper";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../Utils/Colors";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width, height } = Dimensions.get("window");
 
@@ -33,9 +34,10 @@ export default function OnboardingScreen() {
   return (
     <View
       // mode="margin"
-      // edges={["right", "bottom", "left"]}
+      // edges={["right", "left","top"]}
       style={[styles.container, StyleSheet.absoluteFillObject]}
     >
+
       <Onboarding
         onDone={handleDone}
         onSkip={handleDone}
@@ -43,8 +45,8 @@ export default function OnboardingScreen() {
         DoneButtonComponent={doneButton}
         containerStyles={{ paddingHorizontal: 0 }}
         titleStyles={{
-          fontSize:Platform.OS==="ios"? 18:20,
-          fontWeight:Platform.OS==="ios"? "500":"900",
+          fontSize: Platform.OS === "ios" ? 18 : 20,
+          fontWeight: Platform.OS === "ios" ? "500" : "900",
         }}
         pages={[
           {
@@ -54,7 +56,7 @@ export default function OnboardingScreen() {
               <View style={styles.lottie}>
                 <Image
                   source={require("../../../assets/onboarding/agenda.png")}
-                  style={{ height: 325, width: 325 }}
+                  style={styles.img}
                   resizeMode="cover"
                 />
               </View>
@@ -70,7 +72,7 @@ export default function OnboardingScreen() {
               <View style={styles.lottie}>
                 <Image
                   source={require("../../../assets/onboarding/agenda.png")}
-                  style={{ height: 325, width: 325 }}
+                  style={styles.img}
                   resizeMode="cover"
                 />
               </View>
@@ -86,7 +88,7 @@ export default function OnboardingScreen() {
               <View style={styles.lottie}>
                 <Image
                   source={require("../../../assets/onboarding/agenda.png")}
-                  style={{ height: 325, width: 325 }}
+                  style={styles.img}
                   resizeMode="cover"
                 />
               </View>
@@ -103,7 +105,7 @@ export default function OnboardingScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: "white",
   },
   lottie: {
@@ -117,4 +119,5 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 100,
     color: "white",
   },
+  img: { height: 225, width: 225 },
 });

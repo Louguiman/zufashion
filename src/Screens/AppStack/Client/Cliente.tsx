@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
   StatusBar,
   BackHandler,
+  Platform,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Icon, { Icons } from "../../../Utils/Icons";
 import Colors from "../../../Utils/Colors";
 import {
+  BackButton,
   ButtonIcon,
   CardClient,
   ScanQrCode,
@@ -22,7 +24,7 @@ import { client } from "../../../data/client";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AddClient from "./AddClient";
-
+import { MaterialIcons } from "@expo/vector-icons";
 const { width, height } = Dimensions.get("screen");
 const Cliente = () => {
   const [searchTxt, setSearchTxt] = useState("");
@@ -33,11 +35,13 @@ const Cliente = () => {
   const handlePress = (loader) => {
     setCurrentLoder(loader);
   };
+  const goBack=()=>{
+    navigation.goBack()
+  }
 
   if (!currentLoder) {
     return (
       <View style={[styles.contain]}>
-
         <ImageBackground
           source={require("../../../../assets/bannerClient.png")}
           style={[styles.banner]}
@@ -50,9 +54,10 @@ const Cliente = () => {
               alignItems: "center",
               paddingHorizontal: 10,
               zIndex: 1,
-              paddingTop: 50,
+              paddingTop: Platform.OS === "ios" ? 80 : 60,
             }}
           >
+            <BackButton onPres={()=>navigation.goBack()} style={{}}/>
             <Text
               style={{
                 fontSize: 25,
@@ -87,6 +92,9 @@ const Cliente = () => {
         <FlatList
           data={client}
           renderItem={({ item }) => <CardClient item={item} />}
+          numColumns={2}
+         columnWrapperStyle={{flex:1}}
+          
         />
       </View>
     );

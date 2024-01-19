@@ -36,10 +36,10 @@ const Favoris = ({ navigation }: any) => {
   // console.log("Favoris Collections :", favorisListerCollections);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingTop: Platform.OS === "ios" ? 30 : 0 }}>
       {favorisLister.length === 0 && favorisListerCollections.length === 0 ? (
         <View style={{ flex: 1, zIndex: 1 }}>
-          <Header useName="ABBA" type="main" />
+          <Header useName="" type="favoris" onPress={() => {}} style={{}} />
           <Image
             style={styles.image}
             resizeMode="contain"
@@ -49,7 +49,7 @@ const Favoris = ({ navigation }: any) => {
           <Text
             style={{
               fontSize: 18,
-              fontWeight: Platform.OS === "android" ? "bold" : "500",
+              fontWeight: Platform.OS === "android" ? "bold" : "400",
               color: "black",
               textAlign: "center",
             }}
@@ -58,7 +58,14 @@ const Favoris = ({ navigation }: any) => {
           </Text>
 
           <View style={{ padding: 10, marginVertical: 20 }}>
-            <Text style={{ color: "black", fontSize: 15, textAlign: "center" }}>
+            <Text
+              style={{
+                color: "black",
+                fontSize: 15,
+                textAlign: "center",
+                fontWeight: Platform.OS === "android" ? "bold" : "400",
+              }}
+            >
               Lorsque vous effectuer une recherche,appuyer sue le coeur pour
               ajouter une annonce aux favoris
             </Text>
@@ -111,17 +118,17 @@ const Favoris = ({ navigation }: any) => {
               Collections
             </Text>
 
-            <ScrollView horizontal contentContainerStyle={{ marginLeft: 20 }}>
+            <ScrollView horizontal contentContainerStyle={{ marginLeft: 20, }}>
               {favorisListerCollections.length === 0 && (
                 <Text
                   style={{
-                    fontSize: 18,
-                    fontWeight: "900",
+                    fontSize:Platform.OS === "android" ? 18:15.5,
+                    fontWeight:Platform.OS === "android" ? "900":"500",
                     letterSpacing: 0.5,
                     color: Colors.black,
-                    margin: 2,
+                    margin: 5,
                     textAlign: "center",
-                    marginTop: 80,
+                    marginTop:Platform.OS === "android" ? 125:110,
                   }}
                 >
                   Pas encore de Collections au favoris

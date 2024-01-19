@@ -12,6 +12,7 @@ export { default as SearchCard } from "../Components/search/SearchCard";
 export { default as ProfileCard } from "../Components/profile/ProfileHeader";
 export { default as ProfileLateral } from "../Components/profile/ProfileLateral";
 export { default as CardCollections } from "../Components/profile/cardCollections";
+export { default as SectioProfil } from "../Components/profile/SectionProfil";
 //Shared
 export { default as Header } from "../Components/shared/Header";
 export { default as CardPoste } from "../Components/shared/CardPoste";
@@ -29,8 +30,7 @@ export { default as ButtonIcon } from "./shared/ButtonIcon";
 export { default as Box } from "./shared/Box";
 export { default as IconGestion } from "./shared/IconGestion";
 
-//Notification
-export { default as NotifyCard } from "../Components/notification/NotifyCard";
+//Cleint
 
 export { default as CardClient } from "../Components/client/CardClient";
 export { default as Steps1 } from "./client/Steps1";

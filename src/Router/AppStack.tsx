@@ -6,7 +6,6 @@ import {
   Publication,
   Profil,
   CollectionDetails,
-  Notification,
   EditProfil,
   Poste,
   InfosClient,
@@ -24,11 +23,7 @@ function AppStack() {
       <Stack.Screen name="Profil" component={Profil} />
       <Stack.Screen name="EditProfil" component={EditProfil} />
       <Stack.Screen name="CollectionDetails" component={CollectionDetails} />
-      <Stack.Screen
-        name="Notification"
-        component={Notification}
-        options={{ animation: "slide_from_bottom" }}
-      />
+
       <Stack.Screen
         name="Poste"
         component={Poste}

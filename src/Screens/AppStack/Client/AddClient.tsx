@@ -29,7 +29,7 @@ const AddClient = ({ setCurrentLoader }) => {
   return (
     <>
       <ImageBackground
-        style={{ height: height / 5, width, paddingTop: 50 }}
+        style={{ height: height / 4, width, paddingTop: 50 }}
         source={require("../../../../assets/mesureBanner3.jpg")}
         resizeMode="cover"
         // imageStyle={{ height: "100%", width: "100%" }}
@@ -43,7 +43,7 @@ const AddClient = ({ setCurrentLoader }) => {
             paddingHorizontal: 5,
           }}
         >
-          <BackButton onPres={() => setCurrentLoader(null)} />
+          <BackButton onPres={() => setCurrentLoader(null)} style={{position:'relative'}} />
 
           <Text
             style={{
@@ -60,7 +60,7 @@ const AddClient = ({ setCurrentLoader }) => {
       </ImageBackground>
       <View style={{ alignSelf: "center" }}>
         <SegmentedControlTab
-          values={["Information Personnelle", "Mesure et Prix"]}
+          values={["Information Personnelle", "Mesure"]}
           selectedIndex={singleIndex}
           tabStyle={{
             borderColor: "transparent",
@@ -107,12 +107,12 @@ const AddClient = ({ setCurrentLoader }) => {
           type="primary"
           style={{
             zIndex: 1,
-            width: 110,
-            height: 30,
+            width: 190,
+            height: 45,
             padding: 2,
             // marginTop: 10,
             position: "absolute",
-            top:0
+            bottom:0
           }}
         />
     </>

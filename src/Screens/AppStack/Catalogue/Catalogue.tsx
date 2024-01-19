@@ -43,12 +43,8 @@ const Catalogue = () => {
             style={[styles.banner]}
             resizeMode="cover"
           />
-          <View style={{ position: "absolute",top:35 }}>
-          <BackButton onPres={()=>navigation.goBack()}/>
-
-
-   
-          </View>
+            <BackButton onPres={() => navigation.goBack()} style={{top:Platform.OS === "ios" ?45:10}} />
+         
           <Text
             style={{
               fontSize: 30,
@@ -57,7 +53,7 @@ const Catalogue = () => {
               color: Colors.white,
               marginLeft: 30,
               position: "absolute",
-              top: 100,
+              top:Platform.OS==="ios"? 110:60,
             }}
           >
             Récent
@@ -67,7 +63,7 @@ const Catalogue = () => {
             style={{
               position: "absolute",
               zIndex: 1,
-              top:Platform.OS === "ios"?170: 150,
+              top: Platform.OS === "ios" ? 170 : 110,
               paddingRight: 100,
             }}
             horizontal
@@ -88,29 +84,31 @@ const Catalogue = () => {
           >
             <View style={styles.header}>
               <Text style={styles.headerTxt}>Mes Catalogues</Text>
-            
-                <ButtonIcon
-                  placeholder="Créer"
-                  color={Colors.black}
-                  iconSize={24}
-                  iconeName="pluscircle"
-                  onPress={() =>handlePress('Creation')}
-                  type={Icons.AntDesign}
-                  style={{ width: 95, marginRight: 50, height: 35 }}
-                />
+
+              <ButtonIcon
+                placeholder="Créer"
+                color={Colors.black}
+                iconSize={24}
+                iconeName="pluscircle"
+                onPress={() => handlePress("Creation")}
+                type={Icons.AntDesign}
+                style={{ width: 95, marginRight: 50, height: 35 }}
+              />
             </View>
             <FlatList
               data={collectios}
-              renderItem={({ item }) => <RenderCatalogue item={item}  navigation={navigation} />}
-              keyExtractor={(i:any) => i.id}
+              renderItem={({ item }) => (
+                <RenderCatalogue item={item} navigation={navigation} />
+              )}
+              keyExtractor={(i: any) => i.id}
             />
-          </ImageBackground> 
+          </ImageBackground>
         </ImageBackground>
       </View>
     );
   }
   if (currentLoader === "Creation") {
-    return <Creation setCurrentLoader={setCurrentLoader}/>;
+    return <Creation setCurrentLoader={setCurrentLoader} />;
   }
 };
 
@@ -126,13 +124,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
   },
   bannere: {
-    height:Platform.OS === "ios"?390:325,
+    height: Platform.OS === "ios" ? 425 : 360,
     width: "100%",
     position: "absolute",
     bottom: 0,
   },
   blur: {
-    height:Platform.OS === "ios"?390:390,
+    height: Platform.OS === "ios" ? 425 : 360,
+
     width: "98%",
     // marginTop:10
   },

@@ -44,26 +44,37 @@ const Details = ({ route }: any) => {
     <View style={styles.contain}>
       <ImageBackground
         source={catalogueData?.cover}
-        style={{ height: 295, width: "100%" }}
+        style={{ height: 340, width: "100%" }}
         resizeMode="cover"
         imageStyle={{
           borderBottomLeftRadius: 30,
           borderBottomRightRadius: 30,
         }}
       >
-        <View style={{ position: "absolute", top: 35,flexDirection:"row",justifyContent:'space-around',alignItems:'center' }}>
-          <BackButton onPres={() => navigation.goBack()} />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: 50,
+           
+          }}
+        >
+          <BackButton
+            onPres={() => navigation.goBack()}
+            style={{ position: "relative" }}
+          />
 
-          <Text
+          {/* <Text
             style={{
               fontSize: Platform.OS === "ios" ? 15 : 18,
-              fontWeight: "800",
-              color: Colors.white,
-              marginLeft: 15,
+              fontWeight:Platform.OS === "ios" ? "500":"800",
+              color: Colors.darkOverlayColor2,
+              // marginLeft: 15,
             }}
           >
             {catalogueData?.title}
-          </Text>
+          </Text> */}
         </View>
         <Text style={styles.desc}>{catalogueData?.description}</Text>
       </ImageBackground>
@@ -132,7 +143,7 @@ const Details = ({ route }: any) => {
               return <Gallery content={catalogue.content} />;
             }}
             style={{ alignSelf: "center", paddingTop: 15 }}
-            // contentContainerStyle={{width:350}}
+            contentContainerStyle={{ width: 350 }}
           />
         </ImageBackground>
       </ImageBackground>
@@ -150,7 +161,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     textAlign: "center",
-    color: Colors.white,
+    color: Colors.darkOverlayColor2,
     fontSize: Platform.OS === "ios" ? 12 : 15,
 
     width: 350,

@@ -28,7 +28,7 @@ function AuthStack() {
   return (
     isAppFirstLaunched != null && (
       <Stack.Navigator initialRouteName="Onboarding" screenOptions={{ headerShown: false }}>
-      {isAppFirstLaunched && (
+      {!isAppFirstLaunched && (
 
           <Stack.Screen name="Onboarding" component={Onboarding} />
       )}

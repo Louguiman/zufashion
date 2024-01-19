@@ -5,13 +5,28 @@ import Colors from "../../Utils/Colors";
 
 const BackButton = ({ onPres, style }) => {
   return (
-    <TouchableOpacity style={[style, { zIndex: 1 }]} onPress={onPres}>
+    <TouchableOpacity
+      onPress={onPres}
+      style={[
+        {
+          position: "absolute",
+          zIndex: 10000,
+          top: Platform.OS === "ios" ? 40 : 10,
+          left: 10,
+          height: 40,
+          width: 40,
+          backgroundColor: "rgba(0,0,0,0.4)",
+          padding: 5,
+          borderRadius: 20,
+        },
+        style,
+      ]}
+    >
       <Icon
-        type={Icons.Ionicons}
-        name="chevron-back"
-        size={40}
-        color={Colors.black}
-        style={{ margin: 5 }}
+        type={Icons.MaterialIcons}
+        name="arrow-back-ios"
+        size={35}
+        color={Colors.white}
       />
     </TouchableOpacity>
   );

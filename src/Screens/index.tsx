@@ -18,7 +18,6 @@ export {default as CollectionDetails} from './AppStack/CollectionDetails'
 export {default as  Publication} from './AppStack/Publication'
 export {default as Profil} from './AppStack/Profil'
 export {default as EditProfil} from './AppStack/EditProfil'
-export {default as Notification} from './AppStack/Notification'
 export{default as Poste} from "./AppStack/Poste"
 
 

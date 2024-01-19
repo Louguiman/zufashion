@@ -35,10 +35,10 @@ const Welcome = ({ navigation }: any) => {
           height: Platform.OS === "ios" ? 400 : 380,
           width: 250,
           position: "absolute",
-          bottom: Platform.OS === "ios" ? -70 : -15,
+          bottom: Platform.OS === "ios" ? 0 : 80,
           right: 0,
           padding: 10,
-          marginBottom: 60,
+          // marginBottom: 60,
         }}
       >
         <Text style={styles.title}>Bienvenue</Text>

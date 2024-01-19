@@ -35,12 +35,12 @@ const Steps2 = () => {
       style={{}}
       contentContainerStyle={styles.contain}
     >
-      <StepBanner
+      {/* <StepBanner
         prix={prix}
         setPrix={setPrix}
         model={model}
         setModel={setModel}
-      />
+      /> */}
 
       <View style={styles.section}>
         <InputModal
@@ -253,7 +253,8 @@ const styles = StyleSheet.create({
   contain: {
     flexGrow: 1,
     padding: 5,
-    paddingBottom: 150,
+    marginTop: 10,
+    paddingBottom: 235,
   },
   input: {
     width: 157,

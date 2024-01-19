@@ -30,7 +30,7 @@ export default {
   darkGray: "#999999",
   bottom: "#0D0B26",
   darkOverlayColor: "rgba(0, 0, 0, 0.4)",
-  darkOverlayColor2: "rgba(0, 0, 0, 0.8)",
+  darkOverlayColor2: "rgba(0, 0, 0, 0.6)",
   lightOverlayColor: "rgba(255, 255, 255, 0.7)",
   primaryAlpha: "rgba(99, 122, 255, 0.15)",
   redAlpha: "rgba(255, 84, 84, 0.15)",

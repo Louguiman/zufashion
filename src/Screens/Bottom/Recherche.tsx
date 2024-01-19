@@ -12,13 +12,14 @@ const Recherche = () => {
   const [switche, setSwitche] = useState(false);
   return (
     <SafeAreaView style={styles.contain}>
-      <Header useName={"Abba"} />
+      <Header useName={"Cheick Abba"} onPress={()=>{}} style={{}} type="main" />
       <SearchBar
         value={serachTxt}
         onChange={setSerachTxt}
         placeholder={"Recherche"}
         onPress={() => setSwitche(!switche)}
         type="main"
+        
       />
       <View style={styles.container}>
         {switche ? (

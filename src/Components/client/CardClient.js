@@ -33,10 +33,10 @@ const CardClient = ({ item }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      <View
         style={styles.item}
-        onPress={onPress}
-        activeOpacity={0.7}
+        // onPress={onPress}
+        // activeOpacity={0.7}
       >
         <View style={styles.row}>
           <Image
@@ -45,7 +45,7 @@ const CardClient = ({ item }) => {
             resizeMode="cover"
           />
 
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: 0 }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.txt}>{item.nom}</Text>
               <Text style={styles.txt}>{item.prenom}</Text>
@@ -60,9 +60,44 @@ const CardClient = ({ item }) => {
                 size={24}
                 color={Colors.green}
               />
-              {open && <Text style={styles.txt}>Confection en Cours</Text>}
+              {/* {open && <Text style={styles.txt}>Confection en Cours</Text>} */}
+
+              <TouchableOpacity
+                onPress={() =>
+                  Navigation.navigate("AppStack", {
+                    screen: "InfosClient",
+                    params: { item },
+                  })
+                }
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  backgroundColor: Colors.primary,
+                  padding: 3,
+                  borderRadius: 10,
+                }}
+              >
+                <Icon
+                  type={Icons.MaterialCommunityIcons}
+                  name="card-account-details-outline"
+                  size={20}
+                  color={Colors.white}
+                />
+
+                <Text
+                  style={{
+                    fontSize: 12,
+                    fontWeight: "600",
+                    color: Colors.white,
+                    marginLeft: 5,
+                  }}
+                >
+                  Details
+                </Text>
+              </TouchableOpacity>
             </View>
-            <FlatList
+            {/* <FlatList
               data={item.task}
               nestedScrollEnabled
               style={{ height: 50 }}
@@ -101,12 +136,12 @@ const CardClient = ({ item }) => {
                   </View>
                 );
               }}
-            />
+            /> */}
             {/* {item.task.map((item) => )} */}
           </View>
         </View>
 
-        {open ? (
+        {/* {open ? (
           <View style={{ marginTop: 80 }}>
             <View
               style={{
@@ -213,8 +248,8 @@ const CardClient = ({ item }) => {
               })}
             </View>
           </View>
-        ) : null}
-      </TouchableOpacity>
+        ) : null} */}
+      </View>
     </View>
   );
 };
@@ -226,15 +261,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   item: {
-    width: Platform.OS == "ios" ? 370 : 340,
+    width: Platform.OS == "ios" ? 185 : 175,
     borderWidth: 1,
     paddingHorizontal: 5,
     overflow: "hidden",
-    paddingVertical: 80,
+    // paddingVertical: 80,
+    height: 170,
 
     margin: 5,
-    // minHeight: 120,
-    // maxHeight: 270,
+    minWidth: 150,
+    maxWidth: 190,
 
     backgroundColor: Colors.card,
     alignSelf: "center",
@@ -245,14 +281,14 @@ const styles = StyleSheet.create({
     color: "white",
   },
   row: {
-    flexDirection: "row",
+    // flexDirection: "row",
     position: "absolute",
     top: 25,
     left: 10,
   },
   txt: {
-    fontSize: 16,
-    fontWeight: "800",
+    fontSize: Platform.OS === "android" ? 16 : 14,
+    fontWeight: Platform.OS === "android" ? "800" : "400",
     letterSpacing: 0.5,
     color: Colors.white,
     marginRight: 10,
@@ -269,7 +305,8 @@ const styles = StyleSheet.create({
     width: 60,
     borderRadius: 8,
 
-    elevation: 5,
-    marginTop: 25,
+    borderWidth: 2.5,
+    borderColor: Colors.primary,
+    // marginTop: 25,
   },
 });

@@ -30,6 +30,7 @@ import Comments from "../../Components/shared/Comments";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import Colors from "../../Utils/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { BackButton } from "../../Components";
 const Publication = ({ route }: any) => {
   const { item } = route.params;
   console.log(item.comments);
@@ -42,22 +43,7 @@ const Publication = ({ route }: any) => {
 
   return (
     <>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        style={{
-          position: "absolute",
-          zIndex: 10000,
-          top: 30,
-          left: 10,
-          height: 40,
-          width: 40,
-          backgroundColor: "rgba(0,0,0,0.4)",
-          padding: 5,
-          borderRadius: 20,
-        }}
-      >
-        <MaterialIcons name="arrow-back-ios" size={35} color={Colors.white} />
-      </TouchableOpacity>
+      <BackButton onPres={() => navigation.goBack()} style={{}} />
       <View style={styles.header}>
         <Swipers
           height={420}
@@ -80,19 +66,26 @@ const Publication = ({ route }: any) => {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              width: 170,
+              width: 190,
             }}
           >
             <Image
               source={item.avatar}
-              style={{ height: 45, width: 45, borderRadius: 35 }}
+              style={{
+                height: 50,
+                width: 50,
+                borderRadius: 35,
+                borderWidth: 2.5,
+                borderColor: Colors.primary,
+              }}
               resizeMode="cover"
             />
             <View>
               <Text
                 style={{
-                  fontSize: Platform.OS === "android" ? 14.5 : 13,
+                  fontSize: Platform.OS === "android" ? 14.5 : 14,
                   fontWeight: Platform.OS === "android" ? "500" : "400",
+                  marginBottom:5
                 }}
               >
                 {item.nom}
@@ -105,16 +98,12 @@ const Publication = ({ route }: any) => {
           <View style={styles.rightHeader}>
             <TouchableOpacity
               onPress={() => {}}
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
+              style={styles.touch}
             >
-              <Text style={{ fontSize: 15 }}>{item.likeCount}</Text>
-              <Ionicons name="heart-outline" size={20} color="black" />
+              <Ionicons name="heart-outline" size={25} color="black" style={{marginRight:3}} />
+              <Text style={{ fontSize: 16 }}>{item.likeCount}</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               onPress={() => {}}
               style={{
                 flexDirection: "row",
@@ -123,31 +112,31 @@ const Publication = ({ route }: any) => {
               }}
             >
               <Text style={{ fontSize: 15 }}>{item.shareCount}</Text>
-
+ 
               <EvilIcons name="share-apple" size={24} color="black" />
-            </TouchableOpacity>
-            <TouchableOpacity
+            </TouchableOpacity> */}
+            {/* <TouchableOpacity
               onPress={() => {}}
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                alignItems: "center",
-              }}
+              style={styles.touch}
             >
-              <Text style={{ fontSize: 15 }}>{item.shareCount}</Text>
-              <Ionicons name="chatbubble-outline" size={20} color="black" />
-            </TouchableOpacity>
+              <Ionicons name="chatbubble-outline" size={25} color="black" style={{marginRight:3}} />
+              <Text style={{ fontSize: 16 }}>{item.shareCount}</Text>
+            </TouchableOpacity> */}
           </View>
         </View>
         <View style={styles.desc}>
           <Text
-            style={{ fontSize: 12, fontWeight:Platform.OS === "android" ? "600" : "400", textAlign: "center" }}
+            style={{
+              fontSize: 12,
+              fontWeight: Platform.OS === "android" ? "600" : "400",
+              textAlign: "center",
+            }}
           >
             {item.desc}
           </Text>
         </View>
         <View style={styles.comment}>
-          <View style={{ flexDirection: "row",marginLeft:25 }}>
+          <View style={{ flexDirection: "row", marginLeft: 25 }}>
             <Image
               source={require("../../../assets/profil.jpg")}
               style={{
@@ -183,7 +172,12 @@ const Publication = ({ route }: any) => {
             />
           </View>
 
-          <Text style={{ fontSize: 12, fontWeight:Platform.OS === "android" ? "500" : "400" }}>
+          <Text
+            style={{
+              fontSize: 12,
+              fontWeight: Platform.OS === "android" ? "500" : "400",
+            }}
+          >
             Aiment par Moussa Zonko et 458autres personne
           </Text>
         </View>
@@ -235,11 +229,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
   rightHeader: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
+    // flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
     height: 50,
-    width: 150,
+    // width: 175,
+    paddingHorizontal:10
   },
   desc: { alignItems: "center", padding: 10 },
 
@@ -249,7 +244,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     margin: 5,
     // width: 350,
-    paddingHorizontal:10
+    paddingHorizontal: 10,
   },
   input: {
     height: 35,
@@ -268,4 +263,10 @@ const styles = StyleSheet.create({
 
     padding: 5,
   },
+  touch:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    // width:50
+  }
 });

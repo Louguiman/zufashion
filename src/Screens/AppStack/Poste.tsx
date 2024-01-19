@@ -10,9 +10,11 @@ import {
   useWindowDimensions,
   View,
   TextInput,
+  Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import {
+  BackButton,
   Box,
   Buttom,
   Header,
@@ -37,7 +39,7 @@ const Poste = ({ navigation }: any) => {
 
   const launcnCamera = async () => {
     // No permissions request is necessary for launching the image library
-    let result =await launchCamera()
+    let result = await launchCamera();
 
     if (!result) {
       setImage([...result, { ...result }]);
@@ -47,7 +49,7 @@ const Poste = ({ navigation }: any) => {
   const pickImages = async () => {
     // No permissions request is necessary for launching the image library
 
-    let result =await launchImagePicker()
+    let result = await launchImagePicker();
 
     if (!result) {
       setImages(result.uri ? [...result.uri] : result.selected);
@@ -78,7 +80,8 @@ const Poste = ({ navigation }: any) => {
   return (
     <View style={styles.contain}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <BackButton onPres={()=>navigation.goBack()} style={{position:"relative",top:0}} />
+        {/* <TouchableOpacity>
           <Icon
             type={Icons.Ionicons}
             name="chevron-back-outline"
@@ -86,14 +89,15 @@ const Poste = ({ navigation }: any) => {
             size={40}
             style={{ marginBottom: 20 }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text
           style={{
             fontSize: 18,
-            fontWeight: "800",
+            fontWeight:Platform.OS==="android"? "800":'500',
+
             letterSpacing: 0.5,
-            minWidth: 50,
-            maxWidth: 220,
+            // minWidth: 50,
+            // maxWidth: 220,
           }}
         >
           Publication
@@ -108,12 +112,13 @@ const Poste = ({ navigation }: any) => {
         )}
       </View>
 
-      <View style={{}}>
+      <View style={{marginTop:15}}>
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
             height: 60,
+            paddingHorizontal:10
           }}
         >
           <View>
@@ -136,11 +141,11 @@ const Poste = ({ navigation }: any) => {
           </View>
           <Text
             style={{
-              fontSize: 15,
-              fontWeight: "800",
+              fontSize: 18,
+              fontWeight:Platform.OS==="android"? "800":'500',
               letterSpacing: 1.5,
-              marginTop: -30,
-              marginLeft: 10,
+              marginTop: -25,
+              marginLeft: 15,
             }}
           >
             Zoumana Kane
@@ -263,7 +268,7 @@ const Poste = ({ navigation }: any) => {
             type="main"
             style={{ height: 110 }}
           />
-          <Text style={{ fontSize: 18, fontWeight: "bold" }}>OU</Text>
+          <Text style={{ fontSize: 18, fontWeight:Platform.OS==="android"? "bold":"500" }}>OU</Text>
           <Box
             icone="Gallery"
             onPress={pickImages}
@@ -283,7 +288,7 @@ export default Poste;
 const styles = StyleSheet.create({
   contain: {
     flex: 1,
-    paddingTop: 25,
+    paddingTop:Platform.OS==="ios"? 35:-5,
   },
   logoPoste: {
     height: 100,
@@ -299,8 +304,12 @@ const styles = StyleSheet.create({
     minWidth: 350,
     maxWidth: 420,
     // padding: 10,
-    paddingHorizontal: 15,
-    marginVertical: 20,
+    paddingHorizontal: 5,
+    // marginVertical: 20,
+    backgroundColor:Colors.primary,
+    elevation:5,shadowColor:'#000',shadowOffset:{
+      height:2,width:2
+    }
   },
   input: {
     height: 90,
@@ -309,12 +318,14 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     fontSize: 18,
-    fontWeight: "800",
+    fontWeight:Platform.OS==="android"? "800":'500',
+
     letterSpacing: 1.5,
   },
   avatar: {
-    height: 50,
-    width: 50,
+    height: 60,
+    width: 60,
     borderRadius: 40,
+    borderWidth:2.5,borderColor:Colors.primary
   },
 });

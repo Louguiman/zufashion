@@ -36,27 +36,25 @@ const InfosClient = ({ route }: any) => {
         style={[styles.banner]}
         resizeMode="cover"
       >
-          <BackButton onPres={() => navigation.goBack()} style={{paddingTop:20}}  />
-        <View style={{ paddingTop: 30,alignItems:'center',justifyContent:'center' }}>
+        <BackButton onPres={() => navigation.goBack()} style={{}} />
 
-          <Text
-            style={{
-              fontSize: 20,
-              fontWeight: "bold",
-              letterSpacing: 0.5,
-              color: Colors.white,
+        <Text
+          style={{
+            fontSize: Platform.OS === "android" ? 20 : 18,
+            fontWeight: Platform.OS === "android" ? "bold" : "400",
+            letterSpacing: 0.5,
+            color: Colors.white,
 
-              textTransform: "uppercase",
-            }}
-          >
-            Information Du Client(e)
-          </Text>
-        </View>
-        
+            textTransform: "uppercase",
+            textAlign: "center",
+            marginTop: Platform.OS === "ios" ? 35 : 0,
+          }}
+        >
+          Information Du Client(e)
+        </Text>
       </ImageBackground>
       <View style={styles.item}>
         <View style={styles.row}>
-     
           <Image
             source={item.avatar}
             style={styles.avatar}
@@ -64,8 +62,7 @@ const InfosClient = ({ route }: any) => {
             // tintColor={Colors.primary}
           />
 
-       
-          <View style={{ marginLeft: 20 }}>
+          <View style={{ marginLeft: isIphone ? 20 : 15, marginTop: isIphone?20:25 }}>
             <View style={{ flexDirection: "row" }}>
               <Text style={styles.txt}>{item.nom}</Text>
               <Text style={styles.txt}>{item.prenom}</Text>
@@ -74,7 +71,7 @@ const InfosClient = ({ route }: any) => {
               {item.telephone}
             </Text>
 
-            <View
+            {/* <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -87,9 +84,9 @@ const InfosClient = ({ route }: any) => {
                 color={Colors.green}
               />
               <Text style={styles.txt}>Confection en Cours</Text>
-            </View>
-          
-            <FlatList
+            </View> */}
+
+            {/* <FlatList
               style={{ height: 80 }}
               data={item.task}
               renderItem={({ item }) => {
@@ -130,7 +127,7 @@ const InfosClient = ({ route }: any) => {
                   </View>
                 );
               }}
-            />
+            /> */}
           </View>
         </View>
         <View
@@ -146,7 +143,7 @@ const InfosClient = ({ route }: any) => {
         />
         <Text
           style={{
-            fontSize:isIphone?15: 20,
+            fontSize: isIphone ? 15 : 20,
             textAlign: "center",
             fontWeight: "700",
             letterSpacing: 1.5,
@@ -174,6 +171,9 @@ const styles = StyleSheet.create({
   banner: {
     height: height / 5,
     width,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   contact: {
     backgroundColor: Colors.primary,
@@ -206,12 +206,13 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    // justifyContent: "space-around",
     width: 350,
+    padding: 10,
   },
   txt: {
-    fontSize: 16,
-    fontWeight: isIphone ? "600" : "800",
+    fontSize: 18,
+    fontWeight: isIphone ? "500" : "800",
 
     letterSpacing: 0.5,
     color: Colors.black,
@@ -229,7 +230,8 @@ const styles = StyleSheet.create({
     width: 90,
     borderRadius: 8,
 
-    elevation: 5,
     marginTop: 25,
+    borderWidth: 2.5,
+    borderColor: Colors.primary,
   },
 });
